@@ -76,9 +76,9 @@ Txomin \textsc{bisbau}}
     \fancyhead[R]{\includegraphics[height=1cm]{figures/logodassault.png}}
     \fancyhead[C]{Dassault UAV Challenge} %en-tête au milieu
 }
-\lhead{\includegraphics[height=1cm]{figures/logosea.png}} % En-tête à gauche
-\rhead{\includegraphics[height=1cm]{figures/logouniv.png}} % En-tête à droite
-\chead{Problèmes aux limites}
+\lhead{\includegraphics[height=0.7cm]{figures/logosea.png}} % En-tête à gauche
+\rhead{\includegraphics[height=1cm]{figures/logodassault.png}} % En-tête à droite
+\chead{Dassault UAV Challenge}
 \renewcommand{\headrulewidth}{1pt} % Épaisseur de la barre horizontale
 
 \begin{document}
@@ -112,7 +112,7 @@ Txomin \textsc{bisbau}}
 
 \chapter*{Remerciements}
 
-Nous remercions tout d'abord notre professeur référent M.\textsc{Ostre} pour son enthousiasme et ses idées originales tout long de notre projet.\newline
+Nous remercions tout d'abord notre professeur référent M.\textsc{Ostre} pour son enthousiasme et son aide tout long de notre projet.\newline
 
 Nous souhaitons également remercier notre école d'ingénieur SeaTech pour les locaux et le matériel à disposition.\newline
 
@@ -147,7 +147,6 @@ Au-delà de la technologie de pointe, notre drone de sauvetage en mer est équip
 
 Nous sommes impatients de démontrer comment notre drone VTOL peut répondre aux exigences et à sa mission de sauvetage en mer. Notre engagement envers l'innovation, la sécurité et l'efficacité se reflète dans chaque aspect de ce projet.
 
-fhfhfhfhf
 \chapter{Présentation}
 
 \section{Contexte et mission : sauvetage en mer}
@@ -164,6 +163,53 @@ Tout d'abord, notre école d'ingénieur SeaTech étant situé à Toulon, premiè
 
 \section{Fonctionnalités et diagrammes techniques}
 
+\subsubsection*{Diagramme des interacteurs}
+
+La réalisation de notre drone nécessite de comprendre les liens qui l’unissent aux différents acteurs qu’il rencontrera, dans le but de déterminer l’environnement dans lequel il devra évoluer. Cet environnement conditionne les fonctions de notre drone, divisées en deux types : les principales (FP) et contraintes (FC).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=10cm]{figures/diagex.png}
+    \caption{Diagramme des interacteurs}
+    \label{diagex}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=9cm]{figures/fonctions.png}
+    \caption{Tableau des fonctions : principales et complémentaires}
+    \label{fonctions}
+\end{figure}
+
+\newpage
+\subsubsection*{Contraintes détaillées}
+
+Les exigences que nous détaillons ci-dessous correspondent aux valeurs du prototype et peuvent donc être imparfaites ou simplifiées. Certaines valeurs seront donc sûrement à modifier à la suite de nos tests.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=18cm]{figures/tab1.png}
+    \caption{Tableau des fonctions : principales et complémentaires}
+    \label{fonctions}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=7cm]{figures/tab2.png}
+    \caption{Tableau des fonctions : principales et complémentaires}
+    \label{fonctions}
+\end{figure}
+
+
+\subsubsection*{Diagramme FAST}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=14cm]{figures/fast.png}
+    \caption{Diagramme FAST}
+    \label{fonctions}
+\end{figure}
+
 \chapter{Réalisation fonctionnelle du drone}
 
 \section{Structure du drone}
@@ -176,11 +222,11 @@ Dans cette partie, nous présenterons la structure du drone et les choix qui ont
 
 \subsubsection*{Profil et dimensionnement des ailes}
 
-Pour le profil de nos deux ailes, nous avons choisi le profil NACA4412. En effet, c'est un profil qui est stable sans décrochage brutal du coefficient de protance (\ref{cz}). D'autre part, dans notre cas d'utilisation, nous ne faisons pas de voltige donc il n'aurait pas été judicieux de prendre un profil symétrique par exemple.
+Pour le profil de nos deux ailes, nous avons choisi le profil NACA 4412. En effet, c'est un profil qui est stable sans décrochage brutal du coefficient de portance (\ref{cz}). D'autre part, dans notre cas d'utilisation, nous ne faisons pas de voltige donc il n'aurait pas été judicieux de prendre un profil symétrique par exemple.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[height=10cm]{figures/cz.png}
+    \includegraphics[height=8cm]{figures/cz.png}
     \caption{Courbe du coefficient de portance en fonction de l'incidence}
     \label{cz}
 \end{figure}
@@ -212,9 +258,49 @@ Notre aile est conçu en polystyrène. Elle est découpée à l'aide d'une déco
 
 \subsection{Structure entre le fuselage et les moteurs : tubes}
 
+Nos sytèmes moteur sont reliés au fuselage par l'intermédiaire de tubes creux en aluminium. Pour cela, nous devons mener une étude pour choisir judicieusement les dimensions de ce tube.\newline
+
+Tout d'abord, étant donné que notre aile fait une longueur de 60cm, nous choisissons de prendre un tube d'une longueur de 70cm. En effet, nous devons prendre en compte également le support en bout de tube en plus de l'aile.\newline
+
+Dans un second temps, nous devons choisir le diamètre du tube. Nous avons donc fait une étude de résitance des matériaux afin de le déterminer en fonction de la limite d'élasticité de l'aluminium et les paramètres de notre système.\newline
+
+Cela nous a amener à calculer le diamètre dans trois cas (\ref{flex}):
+\begin{itemize}
+    \item Cas 1 : drone à l'arrêt, le tube supporte la force du poids (P),
+    \item Cas 2 : drone en vol vertical, le tube supporte la force du poids (P) et la force moteur (F),
+    \item Cas 3 : drone en vol horizontale, le tube suporte la force du poids (P), la force moteur (F) et la force linéique de la portance (w) sur toute l'aile.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=3cm]{figures/flexion.jpeg}
+    \caption{Schémas des 3 cas d'étude de poutre en flexion}
+    \label{flex}
+\end{figure}
+
+\textcolor{red}{résultat}
+
+Pour confirmer nos calculs théoriques, nous avons décider de faire une simulation sur Abaqus.\newline
+
+\textcolor{red}{résultat}
+
+Nous avons également réaliser l'expérience afin de valider notre structure.\newline
+
+\textcolor{red}{résultat}
+
 
 \subsection{Empennage}
 
+L'empennage de notre drone est un empennage classique position basse. Cette empennage permet de venir stabiliser le vol de notre drone. L'empennage, comme les ailes, est en polystyrène. Il est découpé au fil chaud.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=4cm]{figures/emp.jpeg}
+    \caption{Représentation de l''empennage}
+    \label{flex}
+\end{figure}
+
+\newpage
 \section{Contrôle du drone}
 
 \subsection{Système électronique}
@@ -229,7 +315,7 @@ Notre aile est conçu en polystyrène. Elle est découpée à l'aide d'une déco
 
 \section{Système de largage}
 
-\chapter{Estimation du coût }
+\chapter{Estimation du coût}
 
 \chapter{État d'avancement du prototype}
 
