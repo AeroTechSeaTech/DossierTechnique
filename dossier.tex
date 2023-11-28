@@ -5,6 +5,9 @@
 \usepackage{babel}
 \usepackage{amsmath,amssymb}
 \usepackage{minted}
+\usepackage{array}
+\usepackage{tabularx}
+% \usepackage{minipage}
 %\usepackage[toc,pagee]{appendix}
 \usepackage{graphicx}
 \graphicspath{
@@ -181,6 +184,27 @@ La réalisation de notre drone nécessite de comprendre les liens qui l’unisse
     \label{fonctions}
 \end{figure}
 
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{14cm}{|c|p{12.25cm}|}
+        \hline
+        \textbf{FP1} & \textbf{Piloter le drone dans son environnement}                                                                                  \\
+        \hline
+        \textbf{FP2} & \textbf{Larguer la bouée de manière sûre et précise au nageur}                                                                    \\
+        \hline
+        \textbf{FP3} & \textbf{Fournir la position du drone à l’opérateur et permettre à l’appareil de se rendre à un point précis}                      \\
+        \hline
+        \textbf{FC1} & \textbf{Visualiser l’environnement et détecter le nageur en détresse afin de se positionner}                                      \\
+        \hline
+        \textbf{FC2} & \textbf{Respecter les contraintes obligatoires et importantes imposées par Dassault dans le cadre du Dassault UAV Challenge 2024} \\
+        \hline
+        \textbf{FC3} & \textbf{Respecter les normes de la DGAC appliquées aux UAV de catégorie C2}                                                       \\
+        \hline
+        \textbf{FC4} & \textbf{Décoller sur une distance courte et tout type de sol}                                                                     \\
+        \hline
+    \end{tabularx}
+\end{table}
+
 \newpage
 \subsubsection*{Contraintes détaillées}
 
@@ -200,12 +224,12 @@ Les exigences que nous détaillons ci-dessous correspondent aux valeurs du proto
     \label{fonctions}
 \end{figure}
 
-
+\newpage
 \subsubsection*{Diagramme FAST}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[height=14cm]{figures/fast.png}
+    \includegraphics[height=12cm]{figures/fast.png}
     \caption{Diagramme FAST}
     \label{fonctions}
 \end{figure}
@@ -312,6 +336,32 @@ L'empennage de notre drone est un empennage classique position basse. Cette empe
 \chapter{Réalisation de la mission : systèmes de sauvetage}
 
 \section{Système de détection}
+
+Notre mission consiste à envoyer le drone de manière autonome pour déposer une bouée à une personne en mer. Nous devons avoir un moyen de détecter les humains dans un périmètre donné. Nous avons donc opté pour une détection par caméra de la personne. Le choix le plus simple et le mieux adapté serait d'utiliser une caméra thermique pour détecter les zones chaudes. Il suffit donc de repérer ces zones et d'envoyer une image de confirmation à la station de contrôle pour s'assurer qu'il s'agit bien de la personne à secourir. Cela présente l'avantage d'être très simple à mettre en place et fonctionne de jour comme de nuit. Cependant, le coût de ces caméras est exorbitant, donc il nous est impossible d'en acquérir une d'une résolution suffisante cette année.\newline
+
+Nous avons donc opté pour une approche avec une caméra classique couplée à un algorithme d'apprentissage supervisé de détection d'objet. Afin de déterminer si la technique pouvait fonctionner, nous avons pris nos nageurs les moins frileux et les avons photographiés dans la mer sous différents angles. Au total, nous avons recueilli plus de 1000 images que nous avons annotées avec une seule classe (noyé), soit un total de 2000 instances de nageurs que nous avons fournies à notre intelligence artificielle. Nous avons utilisé YOLOv8, car c'est la version la plus récente de la série YOLO et qu'elle est plus simple à entraîner que ses prédécesseurs tels que Darknet YOLO.
+\bigskip
+\begin{figure}[h]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[height=4cm]{figures/vid.png}
+        \caption{Image d'origine}
+        \label{image}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[height=4cm]{figures/det.png}
+        \caption{Image après détection du noyé}
+        \label{detect}
+    \end{minipage}
+\end{figure}
+
+Nous avons choisi la version "medium" de YOLOv8, car elle offre un bon compromis entre le nombre de paramètres et la performance de détection. Ensuite, nous avons fait tourner l'algorithme sur quelques vidéos inconnues du modèle sur une GTX 1070 et ainsi pu détecter les zones où se trouvaient des personnes dans l'eau, ainsi qu'un pourcentage de confiance.\newline
+
+Les résultats étaient excellents grâce aux conditions de visibilité quasi identiques à l'apprentissage, mais nous pouvons sans problème étendre la base de données en changeant d'endroit, d'heure et de météo afin de garantir une détection optimale pour toutes les conditions. Nous sommes conscients que nous n'aurons pas une puissance de calcul aussi importante qu'une GTX 1070 sur notre drone en raison des coûts et du poids. Cependant, il reste des étapes importantes d'optimisation telles que la quantification et l'élagage, le passage de python à OpenCV en C++. De plus, nous ne sommes pas contraints de faire tourner le modèle à 60 fps, car les images seront sensiblement les mêmes. En cas de temps de traitement trop long, nous pouvons toujours passer à un modèle plus léger, mais dans notre cas, il est préférable de prendre plus de temps pour faire une inférence plutôt que mettre peu de temps, et avoir des détections manquées.\newline
+
+Une vidéo présente les résultats obtenus sur le lien suivant :
+\textcolor{red}{mettre lien yt}
 
 \section{Système de largage}
 
