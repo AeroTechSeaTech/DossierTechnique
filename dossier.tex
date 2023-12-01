@@ -7,6 +7,7 @@
 \usepackage{minted}
 \usepackage{array}
 \usepackage{tabularx}
+\usepackage{multirow}
 % \usepackage{minipage}
 %\usepackage[toc,pagee]{appendix}
 \usepackage{graphicx}
@@ -177,13 +178,6 @@ La réalisation de notre drone nécessite de comprendre les liens qui l’unisse
     \label{diagex}
 \end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[height=9cm]{figures/fonctions.png}
-    \caption{Tableau des fonctions : principales et complémentaires}
-    \label{fonctions}
-\end{figure}
-
 \begin{table}[H]
     \centering
     \begin{tabularx}{14cm}{|c|p{12.25cm}|}
@@ -203,36 +197,83 @@ La réalisation de notre drone nécessite de comprendre les liens qui l’unisse
         \textbf{FC4} & \textbf{Décoller sur une distance courte et tout type de sol}                                                                     \\
         \hline
     \end{tabularx}
+    \caption{Tableau des fonctions : principales et complémentaires}
 \end{table}
 
 \newpage
 \subsubsection*{Contraintes détaillées}
 
 Les exigences que nous détaillons ci-dessous correspondent aux valeurs du prototype et peuvent donc être imparfaites ou simplifiées. Certaines valeurs seront donc sûrement à modifier à la suite de nos tests.
+\bigskip
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[height=18cm]{figures/tab1.png}
-    \caption{Tableau des fonctions : principales et complémentaires}
-    \label{fonctions}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[height=7cm]{figures/tab2.png}
-    \caption{Tableau des fonctions : principales et complémentaires}
-    \label{fonctions}
-\end{figure}
+\begin{table}[H]
+    \begin{tabularx}{18.5cm}{|p{2cm}|l|p{4.5cm}|p{2cm}|X|}
+        \hline
+        \textbf{Fonctions de service} & \textbf{Critères d’appréciations}    & \textbf{Niveaux d’appréciations} & \textbf{Limite d’acceptation} & \textbf{Classe} \\
+        \hline
+        \multirow{5}{*}{\textbf{FP1}}
+                                      & Propulsion (puissance moteur)        & 2x 300W                          & >2 x 300W                     & F1              \\
+                                      & Vitesse horizontal                   & 80 km/h                          &                               & F2              \\
+                                      & Vitesse vertical                     & 2m/s                             &                               & F2              \\
+                                      & Altitude (niveau mer)
+                                      & 120m                                 & min 80 m                         & F1                                              \\
+                                      & Portée communication                 & > 500m                           &                               & F1              \\
+        \hline
+        \multirow{3}{*}{\textbf{FP2}}
+                                      & Capacité de charge                   & 500g                             &                               & F1              \\
+                                      & Dispositif de largage                & Gachette + Filin                 &                               & F1              \\
+                                      & Précision largage                    & +/-30cm                          &                               & F1              \\
+        \hline
+        \textbf{FP3}                  & Récepteur GPS                        & Position exacte                  & ± 2m                          & F1              \\
+        \hline
+        \multirow{2}{*}{\textbf{FC1}}
+                                      & Caméra                               & Résolution de 1920x1080          &                               & F1              \\
+                                      & Précision du positionnement          & Position exacte                  & ± 0.5m                        & F1              \\
+        \hline
+        \multirow{7}{*}{\textbf{FC2}}
+                                      & Bouton d'arrêt d’urgence             & instantané                       &                               & F0              \\
+                                      & Suivre une trajectoire               & Précision de 3m                  &                               & F0              \\
+                                      & Respecter un périmètre de vol        & 100x50x120m                      &                               & F0              \\
+                                      & Capacité de vol autonome
+                                      &                                      &                                  & F0                                              \\
+                                      & Retour du drone si perte de signal   &                                  &                               & F0              \\
+                                      & Retour niveau batterie               & Précision au pourcentage         &                               & F1              \\
+                                      & Retour paramètres de vol             &                                  &                               & F1              \\
+        \hline
+        \multirow{3}{*}{\textbf{FC3}}
+                                      & Poids                                & < 4kg (classe C2)                &                               & F0              \\
+                                      & Dispositif de signalement à distance & Portée de 1km                    &                               & F0              \\
+                                      & Fonction de géovigilance             &                                  &                               & F0              \\
+        \hline
+        \multirow{2}{*}{\textbf{FC4}}
+                                      & Système VTOL                         &                                  &                               & F0              \\
+                                      & Switch mode avion-hélicoptère        & Durée : 2 secondes               &                               & F1              \\
+        \hline
+    \end{tabularx}
+    \caption{Tableau des contraintes détaillées}
+\end{table}
 
 \newpage
 \subsubsection*{Diagramme FAST}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[height=12cm]{figures/fast.png}
+    \includegraphics[height=16cm]{figures/fast.png}
     \caption{Diagramme FAST}
     \label{fonctions}
 \end{figure}
+
+\newpage
+\subsubsection{Diagramme cinématique}
+Nous avons réalisé le diagramme cinématique de notre drone afin de visualiser les différents acteurs.
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=10cm]{figures/cine.png}
+    \caption{Diagramme cinématique}
+    \label{cine}
+\end{figure}
+
+Nous avons fait le choix de ne pas avoir de parties mobiles sur la voilure, laissant ainsi les servomoteurs et les moteurs aux extrémités des ailes gérer les axes de roulis, tangage et lacet. De la même manière, l’empennage vertical et horizontal est fixe. Le système de largage est quant à lui composé d’un servomoteur et est détaillé dans la partie (\textcolor{red}{mettre partie correspondante}). La caméra est située à l’avant de l’appareil et ne sera pas mobile, elle est orientée à la verticale de l’appareil pour pouvoir être placé au-dessus de la victime.
 
 \chapter{Réalisation fonctionnelle du drone}
 
@@ -241,6 +282,25 @@ Les exigences que nous détaillons ci-dessous correspondent aux valeurs du proto
 Dans cette partie, nous présenterons la structure du drone et les choix qui ont été fait quant à cette dernière.
 
 \subsection{Fuselage}
+
+Pour le fuselage de l’avion nous avons pensé à une base simple et modifiable selon l’avancée du projet. Elle reprend l’idée générale de la calandre du VTOL développée par le Youtuber Tom Stanton. Pour allier tous nos objectifs de mission, le fuselage  comprend plusieurs éléments qui pourront évoluer au fil de notre conception. La structure à été adaptée pour fixer une plateforme Pixhawk à l’horizontale, mais contiendra aussi la batterie et l’électronique embarqué. Elle comprend :
+
+\begin{itemize}
+    \item Une clé d’aile comprenant une fixation pour le tube avec une inclinaison de 3 degrés ainsi qu’un espace central pour  passer les fils des moteurs à l'électronique. L'inclinaison de 3 degrés de la clé d'aile va permettre d’optimiser la portance de l’aile sans en exagérer la traînée. De plus, elle a été étudiée pour résister aux contraintes mécaniques appliquées par les tubes sur la structure.
+    \item 2 plaques extérieures qui vont représenter une première protection pour l’électronique embarqué.
+    \item Une pièce de fixation de queue permettant la fixation de l’ensemble tube-empennage. Elle a été conçue pour allier une réduction maximale de sa masse et une résistance maximale.
+    \item Un fond avec une fixation des composants électroniques et de la batterie.
+\end{itemize}
+
+Avec notamment la partie inférieure qui pourra évoluer pour avoir un emplacement pour la caméra et une adaptation pour le système de largage.
+\textcolor{red}{à compléter}\newline
+
+L'impression 3D de la structure offre une fabrication personnalisée, rapide et économique. Elle va nous permettre la réalisation de pièces essentielles avec de la résine thermoplastique.
+
+Nous avons choisi ce mode de réalisation car il favorise les essais avec une réalisation rapide. Cela nous permet aussi d’avoir des pièces plus légères tout en réduisant les déchets de production.\newline
+
+En somme, le calandre du VTOL est une composante essentielle qui répond à la fois à des contraintes fonctionnelles, de sécurité et d'esthétisme. Elle assure à la fois la rigidité de l’appareil et la protection des systèmes embarqués tout en améliorant l'aérodynamisme du drone.
+
 
 \subsection{Aile}
 
@@ -364,6 +424,28 @@ Une vidéo présente les résultats obtenus sur le lien suivant :
 \textcolor{red}{mettre lien yt}
 
 \section{Système de largage}
+
+Le système de largage doit remplir deux objectifs :
+
+\begin{itemize}
+    \item Maintenir la charge utile durant le vol et les manœuvres.
+    \item Larguer la charge utile de manière sûre.
+    \item Pouvoir tracter la charge utile jusqu’au nageur si elle se déporte lors de son largage.\newline
+\end{itemize}
+
+Avant de répondre à ces critères, nous avons dû décider où positionner la charge. Nous avons choisi de la placer sous le fuselage plutôt qu’à l’intérieur, cela nous permet en effet de disposer de davantage de volume pour les composants électroniques et d’optimiser le profil de l’appareil. De plus, si l’on veut varier les dimensions de la charge utile, il est plus aisé de fixer cette dernière sous le fuselage, ce qui n'entraînera pas de grosses modifications structurelles. Afin de ne pas affecter de manière importante les déplacements de l’appareil, la charge est disposée au niveau de la clé d’aile, là où nous essayerons de fixer le centre de gravité de l’appareil.\newline
+
+La charge utile dans le cadre de notre mission sera une bouée autogonflante de la marque OneUp. Son étui est un cylindre de 17cm de long pour 5.7cm de diamètre, le tout pour un poids de 370 grammes. Afin de remplir la contrainte de Dassault d’emporter une charge utile de 500 grammes, nous testerons notre largage avec un cylindre de mêmes dimensions que l’étui mais avec une masse de 500 grammes.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/bouee.png}
+    \caption{title}
+\end{figure}
+
+Le système de largage est constitué d’une nacelle placée sous le fuselage. Cette nacelle contient le servomoteur \textcolor{red}{fin ????}
+Centre de masse de la nacelle aligné avec le centre de gravité de l’appareil en vol horizontal stabilisé. Prise en compte du changement de moment lorsque la charge sera délivrée, cela fera pencher légèrement l’appareil vers l’avant.
+
 
 \chapter{Estimation du coût}
 
