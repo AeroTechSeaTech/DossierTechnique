@@ -273,7 +273,7 @@ Nous avons réalisé le diagramme cinématique de notre drone afin de visualiser
     \label{cine}
 \end{figure}
 
-Nous avons fait le choix de ne pas avoir de parties mobiles sur la voilure, laissant ainsi les servomoteurs et les moteurs aux extrémités des ailes gérer les axes de roulis, tangage et lacet. De la même manière, l’empennage vertical et horizontal est fixe. Le système de largage est quant à lui composé d’un servomoteur et est détaillé dans la partie (\textcolor{red}{mettre partie correspondante}). La caméra est située à l’avant de l’appareil et ne sera pas mobile, elle est orientée à la verticale de l’appareil pour pouvoir être placé au-dessus de la victime.
+Nous avons fait le choix de ne pas avoir de parties mobiles sur la voilure, laissant ainsi les servomoteurs et les moteurs aux extrémités des ailes gérer les axes de roulis, tangage et lacet. De la même manière, l’empennage vertical et horizontal est fixe. Le système de largage est quant à lui composé d’un servomoteur et est détaillé dans la partie (\ref{larg}). La caméra est située à l’avant de l’appareil et ne sera pas mobile, elle est orientée à la verticale de l’appareil pour pouvoir être placé au-dessus de la victime.
 
 \chapter{Réalisation fonctionnelle du drone}
 
@@ -283,30 +283,40 @@ Dans cette partie, nous présenterons la structure du drone et les choix qui ont
 
 \subsection{Fuselage}
 
-Pour le fuselage de l’avion nous avons pensé à une base simple et modifiable selon l’avancée du projet. Elle reprend l’idée générale de la calandre du VTOL développée par le Youtuber Tom Stanton. Pour allier tous nos objectifs de mission, le fuselage  comprend plusieurs éléments qui pourront évoluer au fil de notre conception. La structure à été adaptée pour fixer une plateforme Pixhawk à l’horizontale, mais contiendra aussi la batterie et l’électronique embarqué. Elle comprend :
+Pour le fuselage de l’avion, nous avons pensé à une base simple et modifiable selon l’avancée du projet. Elle reprend l’idée générale de la calandre du VTOL développée par le Youtuber Tom Stanton. Pour allier tous nos objectifs de mission, le fuselage  comprend plusieurs éléments qui pourront évoluer au fil de notre conception. La structure a été adaptée pour fixer une plateforme Pixhawk à l’horizontale, mais contiendra aussi la batterie et l’électronique embarqué. Elle comprend :
 
 \begin{itemize}
     \item Une clé d’aile comprenant une fixation pour le tube avec une inclinaison de 3 degrés ainsi qu’un espace central pour  passer les fils des moteurs à l'électronique. L'inclinaison de 3 degrés de la clé d'aile va permettre d’optimiser la portance de l’aile sans en exagérer la traînée. De plus, elle a été étudiée pour résister aux contraintes mécaniques appliquées par les tubes sur la structure.
+          \begin{figure}[h]
+              \centering
+              \includegraphics[height=5cm]{figures/cle.png}
+              \caption{Clé d'aile}
+          \end{figure}
     \item 2 plaques extérieures qui vont représenter une première protection pour l’électronique embarqué.
     \item Une pièce de fixation de queue permettant la fixation de l’ensemble tube-empennage. Elle a été conçue pour allier une réduction maximale de sa masse et une résistance maximale.
+          \begin{figure}[h]
+              \centering
+              \includegraphics[height=5cm]{figures/arr.png}
+              \caption{Clé d'aile}
+          \end{figure}
+          \newpage
     \item Un fond avec une fixation des composants électroniques et de la batterie.
 \end{itemize}
 
-Avec notamment la partie inférieure qui pourra évoluer pour avoir un emplacement pour la caméra et une adaptation pour le système de largage.
-\textcolor{red}{à compléter}\newline
+Avec notamment la partie inférieure qui pourra évoluer pour avoir un emplacement pour la caméra et une adaptation pour le système de largage qui sera developpé dans la partie (\ref{larg}).\newline
 
 L'impression 3D de la structure offre une fabrication personnalisée, rapide et économique. Elle va nous permettre la réalisation de pièces essentielles avec de la résine thermoplastique.
 
 Nous avons choisi ce mode de réalisation car il favorise les essais avec une réalisation rapide. Cela nous permet aussi d’avoir des pièces plus légères tout en réduisant les déchets de production.\newline
 
-En somme, le calandre du VTOL est une composante essentielle qui répond à la fois à des contraintes fonctionnelles, de sécurité et d'esthétisme. Elle assure à la fois la rigidité de l’appareil et la protection des systèmes embarqués tout en améliorant l'aérodynamisme du drone.
+En somme, le calandre du VTOL est une composante essentielle qui répond à la fois à des contraintes fonctionnelles, de sécurité et d'esthétisme. Elle assure à la fois une structure rigide et la protection des systèmes embarqués tout en contribuant à l'aérodynamisme du drone.
 
 
 \subsection{Aile}
 
 \subsubsection*{Profil et dimensionnement des ailes}
 
-Pour le profil de nos deux ailes, nous avons choisi le profil NACA 4412. En effet, c'est un profil qui est stable sans décrochage brutal du coefficient de portance (\ref{cz}). D'autre part, dans notre cas d'utilisation, nous ne faisons pas de voltige donc il n'aurait pas été judicieux de prendre un profil symétrique par exemple.
+Pour le profil de nos deux ailes, nous avons choisi le profil NACA 4412. En effet, c'est un profil qui est stable sans décrochage brutal du coefficient de portance (\ref{cz}). D'autre part, dans notre cas d'utilisation, nous ne faisons pas de voltige donc il n'aurait pas été judicieux de prendre un profil symétrique par exemple.\newline
 
 \begin{figure}[h]
     \centering
@@ -324,8 +334,6 @@ Avec $C_z$ le coefficient de portance.
 Nous déterminons ainsi la surface.
 $$S=\frac{2F_p}{\rho C_z v^2}$$
 
-\textcolor{red}{à confirmer}
-
 Nous réalisons les calculs lorsque la force de portance égalise celle du poids du drone : $F_p=P.$ Avec une masse de $m=1$kg, nous trouvons $F_p=9,81$N. Nous choisissons un angle d'incidence de $6°$ ce qui nous donne un coefficient de portance $C_z=1,2$.\newline
 
 Nous trouvons après application numérique une surface de $S=1,265$$m^2$, avec $\rho=1,292$kg/$m^3$ et $v=10$m/s.\newline
@@ -336,9 +344,41 @@ Nous trouvons après application numérique une surface de $S=1,265$$m^2$, avec 
 
 Notre aile est conçu en polystyrène. Elle est découpée à l'aide d'une découpeuse à fil chaud. Après avoir réalisé la modélisation sur Catia du profil de l'aile, nous l'envoyons à la découpeuse.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/ailec.png}
+    \caption{Modélisation de l'aile sur CatiaV5}
+\end{figure}
+
 \textcolor{red}{photo Catia, photo résultat}
 
 \subsection{Systèmes moteur}
+
+Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout en assurant sa stabilité, et assurer la translation vertical du drone en mode hélicoptère. Nous nous sommes alors penchés sur la manière de concevoir le socle du moteur sur l’aile permettant d'assurer ces tâches. Sachant qu’à notre disposition nous possédons un moteur (Insérer référence), l’architecture du socle moteur a été construite sur cette base. Le système moteur ainsi conçu doit répondre aux critères de notre mission, soit lui permettre de faire décoller l’appareil à la verticale puis de changer sa position de vol pour passer à un vol horizontal. \newline
+
+L’idée consiste à permettre la rotation du socle moteur sur le support de l’aile, tout en minimisant l’espace qu’il utilise et en l’empêchant de glisser longitudinalement sur le support de l’aile. La rotation s’effectue à l’aide de deux engrenages. Le train d’entrée est mis en rotation à l’aide d’un servomoteur (référence petit moteur). Il faut donc un support pour celui-ci.\newline
+
+De là, 3 pièces sont à créer :
+\begin{itemize}
+    \item Le support moteur (pièces 1)
+    \item Support servomoteur (pièce 2)
+    \item Des cales (pièces 3)
+    \item Un engrenage (pièce 4)
+\end{itemize}
+
+Les pièces sont ainsi réalisées sous CatiaV5.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/mot1.png}
+    \caption{Modélisation des pièces 1 et 4}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/mot2.png}
+    \caption{Modélisation des pièces 2 et 3}
+\end{figure}
 
 \subsection{Structure entre le fuselage et les moteurs : tubes}
 
@@ -424,7 +464,7 @@ Une vidéo présente les résultats obtenus sur le lien suivant :
 \textcolor{red}{mettre lien yt}
 
 \section{Système de largage}
-
+\label{larg}
 Le système de largage doit remplir deux objectifs :
 
 \begin{itemize}
@@ -443,9 +483,39 @@ La charge utile dans le cadre de notre mission sera une bouée autogonflante de 
     \caption{title}
 \end{figure}
 
-Le système de largage est constitué d’une nacelle placée sous le fuselage. Cette nacelle contient le servomoteur \textcolor{red}{fin ????}
-Centre de masse de la nacelle aligné avec le centre de gravité de l’appareil en vol horizontal stabilisé. Prise en compte du changement de moment lorsque la charge sera délivrée, cela fera pencher légèrement l’appareil vers l’avant.
+Le système de largage est constitué d’une nacelle placée sous le fuselage. Le système est simple : le servomoteur présent à l’avant de la nacelle manipule un crochet qui, en vol, maintient le plancher de la nacelle fermé. Le plancher sur lequel repose la bouée est donc relié à la nacelle par une liaison pivot libre, et est uniquement retenu en position fermée par la pression exercée par le crochet. Des ressorts le relient également au sommet de la nacelle mais sont insuffisants pour, par leur simple traction, maintenir le plancher fermé lorsque la charge est placée dessus. Dans le cas où lors du largage de la bouée une rafale l’entraînerait loin du nageur en détresse, nous avons fait le choix d’accrocher un fil à la bouée, relié à son autre extrémité par une simple boucle autour du crochet.\newline
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/b1.png}
+    \caption{title}
+\end{figure}
+
+Lors du largage, le servomoteur abaisse le crochet afin de libérer la pression contre le plancher, celui-ci s’abaisse alors et la bouée tombe librement. Afin d’éviter que le fil ne se tende lors de la chute et cause des dommages au drone, il faut s’assurer de larguer la charge à une hauteur inférieure à la longueur du fil. La bouée touche alors l’eau et se gonfle seule, toujours maintenue par le fil au crochet.\newline
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/b2.png}
+    \caption{title}
+\end{figure}
+
+Deux cas s’offrent alors : soit la bouée est suffisamment proche du nageur qui la récupère directement, soit la bouée n’a pas atterrit à l’emplacement voulu et il est nécessaire de la tracter vers le nageur (dans la mesure des capacités du drone et de la force des vagues).\newline
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/b3.png}
+    \caption{title}
+\end{figure}
+
+Une fois la bouée saisie par le nageur en détresse, le drone abaisse complètement son crochet (sur commande manuelle de l’opérateur) pour libérer le fil et donc la bouée. La présence des ressorts permettent de tirer le plancher de la nacelle vers le haut. Il est ensuite verrouillé par le crochet qui retourne dans sa position initiale. Le drone peut alors revenir sans risques à son point de départ.\newline
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/b4.png}
+    \caption{title}
+\end{figure}
+
+Cette nacelle sera placée de manière à ce que son centre de masse (lorsqu’elle est chargée) soit sur le même axe vertical que le centre de gravité de l’appareil, soit au niveau de la clé d’aile. Le tout afin d’influencer le moins possible le comportement en vol horizontal stabilisé du drone. Il faudra dès lors prendre en compte qu’une fois la bouée larguée, le centre de masse de la nacelle se déplacera légèrement vers l’avant (dû au poids du servomoteur) et provoquera un léger moment à piquer, ce qui est préférable à un moment à cabrer.
 
 \chapter{Estimation du coût}
 
