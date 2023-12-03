@@ -287,7 +287,16 @@ Dans cette partie, nous présenterons la structure du drone et les choix qui ont
 
 \subsection{Fuselage}
 
-Pour le fuselage de l’avion, nous avons pensé à une base simple et modifiable selon l’avancée du projet. Elle reprend l’idée générale de la calandre du VTOL développée par le Youtuber Tom Stanton. Pour allier tous nos objectifs de mission, le fuselage  comprend plusieurs éléments qui pourront évoluer au fil de notre conception. La structure a été adaptée pour fixer une plateforme Pixhawk à l’horizontale, mais contiendra aussi la batterie et l’électronique embarqué. Elle comprend :
+Pour le fuselage de l’avion, nous avons pensé à une base simple et modifiable selon l’avancée du projet. Elle reprend l’idée générale de la calandre du VTOL développée par le Youtuber Tom Stanton. Pour allier tous nos objectifs de mission, le fuselage  comprend plusieurs éléments qui pourront évoluer au fil de notre conception. La structure a été adaptée pour fixer une plateforme Pixhawk à l’horizontale, mais contiendra aussi la batterie et l’électronique embarqué.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/fuselageent.png}
+    \caption{Ensemble du fuselage}
+    \label{fus}
+\end{figure}
+
+Elle comprend :
 
 \begin{itemize}
     \item Une clé d’aile comprenant une fixation pour le tube avec une inclinaison de 3 degrés ainsi qu’un espace central pour  passer les fils des moteurs à l'électronique. L'inclinaison de 3 degrés de la clé d'aile va permettre d’optimiser la portance de l’aile sans en exagérer la traînée. De plus, elle a été étudiée pour résister aux contraintes mécaniques appliquées par les tubes sur la structure.
@@ -297,6 +306,7 @@ Pour le fuselage de l’avion, nous avons pensé à une base simple et modifiabl
               \caption{Clé d'aile}
               \label{clé}
           \end{figure}
+          \newpage
     \item 2 plaques extérieures qui vont représenter une première protection pour l’électronique embarqué.
     \item Une pièce de fixation de queue permettant la fixation de l’ensemble tube-empennage. Elle a été conçue pour allier une réduction maximale de sa masse et une résistance maximale.
           \begin{figure}[h]
@@ -304,7 +314,6 @@ Pour le fuselage de l’avion, nous avons pensé à une base simple et modifiabl
               \includegraphics[height=5cm]{figures/arr.png}
               \caption{Support de fixation du tube-empennage}
           \end{figure}
-          \newpage
     \item Un fond avec une fixation des composants électroniques et de la batterie.
 \end{itemize}
 
@@ -355,11 +364,12 @@ Notre aile a été modélisé sur CatiaV5.
     \caption{Modélisation de l'aile sur Catia}
     \label{aile}
 \end{figure}
+\newpage
 
 Le carré visible sur la modélisation (figure \ref{aile}) correspond à l'encastrement avec la clé d'aile (figure \ref{clé}) qui permet de fixer la rotation de notre aile avec le fuselage.\newline
 
 Pour la fabrication de notre aile, nous avons choisi le polystyrène. Elle est découpée à l'aide d'une découpeuse à fil chaud.
-
+\label{ailefini}
 \begin{figure}[h]
     \centering
     \includegraphics[height=5cm]{figures/ailepoly.png}
@@ -367,7 +377,6 @@ Pour la fabrication de notre aile, nous avons choisi le polystyrène. Elle est d
     \label{ailepoly}
 \end{figure}
 
-\newpage
 Afin de vérifier la précision de la géométrie de notre découpe, nous avons utilisé un scanner laser 3D. Cette machine réalise des mesures optiques avec une précision de 25 micron.\newline
 
 Une fois la manipulation terminée, nous avons importé la modélisation de l'aile dans le logiciel qui a stocké l'aquisition (Inspector Prenium) pour comparer la densité de points dans l'espace du modèle numérique et du modèle expérimental.\newline
@@ -382,11 +391,17 @@ Nous avons obtenu des résultats très satisfaisant avec une différence inféri
 \end{figure}
 
 \newpage
-\subsection{Systèmes moteur}
+\subsection{Système moteur}
 
-Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout en assurant sa stabilité, et assurer la translation vertical du drone en mode hélicoptère. Nous nous sommes alors penchés sur la manière de concevoir le socle du moteur sur l’aile permettant d'assurer ces tâches. Sachant qu’à notre disposition nous possédons des moteurs brushless, l’architecture du socle moteur a été construite sur cette base. Le système moteur ainsi conçu doit répondre aux critères de notre mission, soit lui permettre de faire décoller l’appareil à la verticale puis de changer sa position de vol pour passer à un vol horizontal. \newline
+Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout en assurant sa stabilité, et assurer la translation vertical du drone en mode hélicoptère. Nous nous sommes alors penchés sur la manière de concevoir le socle du moteur sur l’aile permettant d'assurer ces tâches. Sachant qu’à notre disposition nous possédons des moteurs brushless, l’architecture du socle moteur a été construite sur cette base. Le système moteur ainsi conçu doit répondre aux critères de notre mission, soit lui permettre de faire décoller l’appareil à la verticale puis de changer sa position de vol pour passer à un vol horizontal. Ci-dessous le schéma cinématique.\newline
 
-L’idée consiste à permettre la rotation du socle moteur sur le support de l’aile, tout en minimisant l’espace qu’il utilise et en l’empêchant de glisser longitudinalement sur le support de l’aile. La rotation s’effectue à l’aide de deux engrenages. Le train d’entrée est mis en rotation à l’aide d’un servomoteur. Il faut donc un support pour celui-ci.\newline
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=8cm]{figures/cinemot.jpeg}
+    \caption{Schéma cinématique du système moteur}
+\end{figure}
+
+L’idée consiste de permettre la rotation du socle moteur sur le support de l’aile, tout en minimisant l’espace qu’il utilise et en l’empêchant de glisser longitudinalement sur le support de l’aile. La rotation s’effectue à l’aide de deux engrenages. Le train d’entrée est mis en rotation à l’aide d’un servomoteur. Il faut donc un support pour celui-ci.\newline
 
 De là, 3 pièces sont à créer :
 \begin{itemize}
@@ -410,6 +425,7 @@ Les pièces sont ainsi réalisées sous CatiaV5.
     \caption{Modélisation des pièces 2 et 3}
 \end{figure}
 
+\newpage
 \subsection{Structure entre le fuselage et les moteurs : tubes}
 
 Nos systèmes moteur sont reliés au fuselage par l'intermédiaire de tubes creux en aluminium. Pour cela, nous devons mener une étude pour choisir judicieusement les dimensions de ce tube.\newline
@@ -576,6 +592,40 @@ L'attitude, la position, la surveillance du système d'alimentation et la vitess
 ESC (Electronic Speed Controller) : Il sert de variateur pour distribuer la puissance aux moteurs sur les ordres du contrôleur de vol.\newline
 
 Jetson Nano : Ordinateur compact pour traiter le retour caméra. Il calcule l’emplacement du nageur en détresse et donne l’information à Ardupilot.
+\newpage
+\subsection{Communication par MAVlink}
+
+MAVlink est un protocole de communication légère et open source conçu pour les systèmes de drones. Il offre plusieurs avantages par rapport à une simple commande radio pour la transmission de données avec un drone. Voici quelques-uns des avantages clés :
+\begin{itemize}
+    \item Communication Bidirectionnelle : MAVLink permet une communication bidirectionnelle entre le contrôleur au sol (par exemple, une station de mission ou un ordinateur) et le drone. Cela signifie que des informations peuvent être transmises dans les deux sens, ce qui est essentiel pour des applications avancées telles que la télémétrie en temps réel, la planification de missions, la réception de données du drone, etc.
+    \item Richesse des Données : MAVLink prend en charge la transmission d'une variété de données, y compris la télémétrie, les données de capteurs, les commandes de vol, les informations de mission, etc. Cela permet un contrôle plus précis et une surveillance approfondie des performances du drone
+    \item Interopérabilité : MAVLink est un protocole ouvert, ce qui signifie qu'il peut être utilisé avec une variété de drones et de systèmes au sol provenant de différents fabricants. Cela favorise l'interopérabilité entre les différents composants du système.
+    \item Extensibilité : Le protocole MAVLink est extensible, ce qui signifie que de nouveaux messages et fonctionnalités peuvent être ajoutés au protocole pour prendre en charge de nouvelles capacités sans avoir à redéfinir l'ensemble du protocole.
+    \item Logiciel Open Source : MAVLink est un projet open source, ce qui signifie que son code source est accessible et modifiable par la communauté. Cela favorise le développement collaboratif et permet aux utilisateurs de personnaliser le protocole selon leurs besoins spécifiques.\newline
+\end{itemize}
+
+Gestion d'une Mission : MAVLink prend en charge la planification de missions, ce qui permet de définir des itinéraires spécifiques que le drone doit suivre. Cela ouvre la porte à des applications telles que la cartographie aérienne, la surveillance de l'agriculture, la collecte de données environnementales, etc.\newline
+
+L'utilisation de MAVLink offre une communication plus sophistiquée, une flexibilité accrue et une meilleure intégration entre les composants du drone, ce qui le rend plus adapté à des applications avancées et à des cas d'utilisation complexes.
+
+\subsubsection{Choix de notre Ground Control Station}
+
+Le Ground Station software (GCS),  ou le logiciel de contrôle au sol, va être le logiciel nous permettant de configurer le système de pilotage automatique et de surveiller et contrôler tous les aspects du VTOL. Comme notre VTOL est utilisé avec une télécommande, le logiciel de contrôle au sol n’est pas absolument nécessaire pour le vol ainsi que sur certains aspects du fonctionnement du véhicule, gérés par le contrôleur de vol(Ardupilot). Cependant nous avons fait le choix d’en utiliser un. Nous utilisons un GCS poussé, un desktop GCS. Cela nous permet un accès aux nombreux paramètres de notre VTOL, ainsi que des options de débogage.\newline
+
+Nous nous sommes tournés vers un GCS accessible et fonctionnant bien sur toutes nos plateformes. Nous avons choisi QGroundControl qui est une interface utilisateur facile d’accès. Caractéristique supplémentaire, et preuve de sa fiabilité, il est le GCS le plus courant sur les systèmes reposant sur Android et permet une bonne mise en page sur les petits appareils tels que les téléphones ou tablettes.
+
+\subsection{Avancée actuelle}
+
+\subsubsection{Build Arduipilot pour un pixhawk4 réussi}
+
+Pour ce qui est de l’avancement actuel du développement de Ardupilot nous avons accompli plusieurs builds réussis d'Ardupilot pour un contrôleur de vol Pixhawk4. Cela marque une étape significative dans l’avancement de notre projet de VTOL. Ce succès représente une convergence réussie de multiples éléments critiques du projet. Cela signifie que notre code pour notre VTOL a été converti avec succès en une forme exécutable, prêt à être testé et utilisé dans des environnements pratiques. L’adaptation du code d’un tricopter avec deux moteurs inclinables adapté en code pour un bi-copter avec deux moteurs inclinables s’est révélée être viable.\newline
+
+Lorsqu'un build d'Ardupilot se réalise avec succès, cela témoigne de l'intégration réussie du code source, des configurations système et des dépendances logicielles. Cette avancée valide la conformité de notre code aux normes de programmation, la prise en charge correcte des périphériques matériels du Pixhawk4 et l'absence d'erreurs majeures pendant le processus de compilation.\newline
+
+Ce succès ouvre la voie à des phases ultérieures du projet sea’gogne, notamment la configuration spécifique du véhicule, les tests en simulation et sur banc d'essai, ainsi que les vols d'essai réels. Le firmware Ardupilot, une fois compilé avec succès n’a plus qu’à être chargé sur la plateforme Pixhawk4. On pourra alors commencer les essais pratiques et tester le contrôle du drone via la télécommande et le GSC. L’accomplissement du build joue un rôle crucial dans l'atteinte de nos objectifs de performance et de sécurité du VTOL.\newline
+
+Cette réussite représente donc un progrès significatif vers la réalisation de notre VTOL. Cela fournit une base solide pour le développement, les tests et la mise en œuvre des fonctionnalités nécessaires à l'accomplissement des missions aériennes.
+
 
 \chapter{Réalisation de la mission : systèmes de sauvetage}
 
@@ -664,7 +714,64 @@ Cette nacelle sera placée de manière à ce que son centre de masse (lorsqu’e
 
 \chapter{Estimation du coût}
 
+\begin{table}[h]
+    \begin{tabularx}{18cm}{|l|l|p{2cm}|l|X|}
+        \hline
+        \textbf{Matériel}        & \textbf{Nombre} & \textbf{Prix à l'unité} & \textbf{Poids} & \textbf{Description}                       \\
+        \hline
+        Caméra FPV Avatar HD Pro & 1               & 69,90 €                 & 9.8g           & Format 16:9 -
+        8Mp - 720p en 60ip/s - 1080p à 100ip/s                                                                                             \\
+        \hline
+        Moteur F60 PRO IV V2     & 2               & 28,90€                  & 33.8g          & Version 2550kv                             \\
+        \hline
+        Pixhawk                  & 1               & 113,58€                 & 40g            & Version 2.4.8
+        Inclus les modules de télémétrie, le buzzer et le power module                                                                     \\
+        \hline
+        ESC                      & 1               & 42,99€                  & 75g            & 2 motors connected                         \\
+        \hline
+        Jetson Nano              & 1               & 201,58€                 & 253g           &                                            \\
+        \hline
+        Batterie Li-ion          & 1               & 69,90€                  & 420.5g         & 4000mAh                                    \\
+        \hline
+        GPS                      & 1               & 39,00€                  & 20.6 g         &                                            \\
+        \hline
+        Polystyrène              & 1               & 7.08€                   & 15 kg/m³       & 120 x 60 cm, ép.40 mm (ailes et empennage) \\
+        \hline
+        Tube aluminium           & 3               & 5,9€                    & 100g/m         & 12x1x1000mm                                \\
+        \hline
+        PLA impression 3D        & 1               & 12,99€                  & 1kg            &                                            \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+Nous avons déjà les éléments suivants :
+\begin{itemize}
+    \item Télécommande et récepteur 6 voies
+    \item Servomoteurs
+    \item Moteurs pour les tests fonctionnels, cependant ils ne seront pas assez puissants pour soulever le drone avec sa charge utile.\newline
+\end{itemize}
+
+\underline{Prix total :} 632,52 € (Il est à noter que notre association part avec très peu de matériel initial).
+
+\underline{Poids :} 892 grammes pour la motorisation et l’électronique, auquel il faudra ajouter les 500 grammes de la bouée, et la masse fixe du drone (polystyrène, fuselage en PLA et tubes) qui fera moins de 300 grammes. On arrive à une masse totale inférieure à 1700 grammes.
+
 \chapter{État d'avancement du prototype}
+
+A l'heure actuelle, nous avons déjà une bonne partie de notre prototype. Comme il a été montré dans la partie (\ref{ailefini}), nos ailes en polystyrène sont déjà découpées.\newline
+
+Notre système moteur est également imprimé en PLA et fonctionnel.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=8cm]{figures/impmoteur.png}
+    \caption{Impression 3D des systèmes moteur}
+\end{figure}
+
+Nous avons programmé l'impression de notre fuselage la semaine prochaine.\newline
+
+Nous allons modéliser le système de largage et réaliser des expériences pour valider son bon fonctionnement.\newline
+
+Dès que nous serons en possession d'un pixhawk, nous pourrons réaliser les tests de notre configuration et passer aux essais pratiques.
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{\protect\numberline{}Conclusion}
