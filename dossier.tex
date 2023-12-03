@@ -118,7 +118,7 @@ Txomin \textsc{bisbau}}
 
 Nous remercions tout d'abord notre professeur référent M.\textsc{Ostre} pour son enthousiasme et son aide tout long de notre projet.\newline
 
-Nous souhaitons également remercier notre école d'ingénieur SeaTech pour les locaux et le matériel à disposition.\newline
+Nous souhaitons également remercier notre école d'ingénieur SeaTech pour les moyens mis à notre disposition.\newline
 
 Nous remercions tout particulièrement l'équipe encadrante du \textsc{Dassault} UAV Challenge pour l'opportunité qu'ils nous donnent en participant à cette compétition et les dispositifs mis en place pour nous.
 
@@ -291,13 +291,14 @@ Pour le fuselage de l’avion, nous avons pensé à une base simple et modifiabl
               \centering
               \includegraphics[height=5cm]{figures/cle.png}
               \caption{Clé d'aile}
+              \label{clé}
           \end{figure}
     \item 2 plaques extérieures qui vont représenter une première protection pour l’électronique embarqué.
     \item Une pièce de fixation de queue permettant la fixation de l’ensemble tube-empennage. Elle a été conçue pour allier une réduction maximale de sa masse et une résistance maximale.
           \begin{figure}[h]
               \centering
               \includegraphics[height=5cm]{figures/arr.png}
-              \caption{Clé d'aile}
+              \caption{Support de fixation du tube-empennage}
           \end{figure}
           \newpage
     \item Un fond avec une fixation des composants électroniques et de la batterie.
@@ -334,7 +335,7 @@ Avec $C_z$ le coefficient de portance.
 Nous déterminons ainsi la surface.
 $$S=\frac{2F_p}{\rho C_z v^2}$$
 
-Nous réalisons les calculs lorsque la force de portance égalise celle du poids du drone : $F_p=P.$ Avec une masse de $m=1$kg, nous trouvons $F_p=9,81$N. Nous choisissons un angle d'incidence de $6°$ ce qui nous donne un coefficient de portance $C_z=1,2$.\newline
+Nous réalisons les calculs lorsque la force de portance égalise celle du poids du drone : $F_p=P.$ Avec une masse de $m=1$kg, nous avons $F_p=9,81$N. Nous choisissons un angle d'incidence de $6°$ ce qui nous donne un coefficient de portance $C_z=1,2$ (d'après la figure \ref{cz}).\newline
 
 Nous trouvons après application numérique une surface de $S=1,265$$m^2$, avec $\rho=1,292$kg/$m^3$ et $v=10$m/s.\newline
 
@@ -342,28 +343,53 @@ Nous trouvons après application numérique une surface de $S=1,265$$m^2$, avec 
 
 \subsubsection*{Conception de l'aile}
 
-Notre aile est conçu en polystyrène. Elle est découpée à l'aide d'une découpeuse à fil chaud. Après avoir réalisé la modélisation sur Catia du profil de l'aile, nous l'envoyons à la découpeuse.
+Notre aile a été modélisé sur CatiaV5.
 
 \begin{figure}[h]
     \centering
     \includegraphics[height=5cm]{figures/ailec.png}
-    \caption{Modélisation de l'aile sur CatiaV5}
+    \caption{Modélisation de l'aile sur Catia}
+    \label{aile}
 \end{figure}
 
-\textcolor{red}{photo Catia, photo résultat}
+Le carré visible sur la modélisation (figure \ref{aile}) correspond à l'encastrement avec la clé d'aile (figure \ref{clé}) qui permet de fixer la rotation de notre aile avec le fuselage.\newline
 
+Pour la fabrication de notre aile, nous avons choisi le polystyrène. Elle est découpée à l'aide d'une découpeuse à fil chaud.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/ailepoly.png}
+    \caption{Aile en polystyrène après découpe}
+    \label{ailepoly}
+\end{figure}
+
+\newpage
+Afin de vérifier la précision de la géométrie de notre découpe, nous avons utilisé un scanner laser 3D. Cette machine réalise des mesures optiques avec une précision de 25 micron.\newline
+
+Une fois la manipulation terminée, nous avons importé la modélisation de l'aile dans le logiciel qui a stocké l'aquisition (Inspector Prenium) pour comparer la densité de points dans l'espace du modèle numérique et du modèle expérimental.\newline
+
+Nous avons obtenu des résultats très satisfaisant avec une différence inférieure à 0,3mm à certains endroits. Nous pouvons conclure que notre aile en polystyrène respecte bien le profil aérodynamique choisi.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=8cm]{figures/geo.jpg}
+    \caption{Corrélation du modèle numérique et expérimental}
+    \label{ailepoly}
+\end{figure}
+
+\newpage
 \subsection{Systèmes moteur}
 
-Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout en assurant sa stabilité, et assurer la translation vertical du drone en mode hélicoptère. Nous nous sommes alors penchés sur la manière de concevoir le socle du moteur sur l’aile permettant d'assurer ces tâches. Sachant qu’à notre disposition nous possédons un moteur (Insérer référence), l’architecture du socle moteur a été construite sur cette base. Le système moteur ainsi conçu doit répondre aux critères de notre mission, soit lui permettre de faire décoller l’appareil à la verticale puis de changer sa position de vol pour passer à un vol horizontal. \newline
+Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout en assurant sa stabilité, et assurer la translation vertical du drone en mode hélicoptère. Nous nous sommes alors penchés sur la manière de concevoir le socle du moteur sur l’aile permettant d'assurer ces tâches. Sachant qu’à notre disposition nous possédons des moteurs brushless (BR2212), l’architecture du socle moteur a été construite sur cette base. Le système moteur ainsi conçu doit répondre aux critères de notre mission, soit lui permettre de faire décoller l’appareil à la verticale puis de changer sa position de vol pour passer à un vol horizontal. \newline
 
-L’idée consiste à permettre la rotation du socle moteur sur le support de l’aile, tout en minimisant l’espace qu’il utilise et en l’empêchant de glisser longitudinalement sur le support de l’aile. La rotation s’effectue à l’aide de deux engrenages. Le train d’entrée est mis en rotation à l’aide d’un servomoteur (référence petit moteur). Il faut donc un support pour celui-ci.\newline
+L’idée consiste à permettre la rotation du socle moteur sur le support de l’aile, tout en minimisant l’espace qu’il utilise et en l’empêchant de glisser longitudinalement sur le support de l’aile. La rotation s’effectue à l’aide de deux engrenages. Le train d’entrée est mis en rotation à l’aide d’un servomoteur. Il faut donc un support pour celui-ci.\newline
 
 De là, 3 pièces sont à créer :
 \begin{itemize}
     \item Le support moteur (pièces 1)
     \item Support servomoteur (pièce 2)
     \item Des cales (pièces 3)
-    \item Un engrenage (pièce 4)
+    \item Un engrenage (pièce 4)\newline
 \end{itemize}
 
 Les pièces sont ainsi réalisées sous CatiaV5.
@@ -382,17 +408,17 @@ Les pièces sont ainsi réalisées sous CatiaV5.
 
 \subsection{Structure entre le fuselage et les moteurs : tubes}
 
-Nos sytèmes moteur sont reliés au fuselage par l'intermédiaire de tubes creux en aluminium. Pour cela, nous devons mener une étude pour choisir judicieusement les dimensions de ce tube.\newline
+Nos systèmes moteur sont reliés au fuselage par l'intermédiaire de tubes creux en aluminium. Pour cela, nous devons mener une étude pour choisir judicieusement les dimensions de ce tube.\newline
 
-Tout d'abord, étant donné que notre aile fait une longueur de 60cm, nous choisissons de prendre un tube d'une longueur de 70cm. En effet, nous devons prendre en compte également le support en bout de tube en plus de l'aile.\newline
+Tout d'abord, étant donné que notre aile fait une longueur de 60cm, nous choisissons de prendre un tube d'une longueur de 70cm. En effet, nous devons prendre en compte  le support moteur au bout du tube en plus de l'aile.\newline
 
 Dans un second temps, nous devons choisir le diamètre du tube. Nous avons donc fait une étude de résitance des matériaux afin de le déterminer en fonction de la limite d'élasticité de l'aluminium et les paramètres de notre système.\newline
 
-Cela nous a amener à calculer le diamètre dans trois cas (\ref{flex}):
+Cela nous a amené à calculer le diamètre dans trois cas (\ref{flex}):
 \begin{itemize}
     \item Cas 1 : drone à l'arrêt, le tube supporte la force du poids (P),
     \item Cas 2 : drone en vol vertical, le tube supporte la force du poids (P) et la force moteur (F),
-    \item Cas 3 : drone en vol horizontale, le tube suporte la force du poids (P), la force moteur (F) et la force linéique de la portance (w) sur toute l'aile.
+    \item Cas 3 : drone en vol horizontale, le tube suporte la force du poids (P) et la force linéique de la portance (w) sur toute l'aile.
 \end{itemize}
 
 \begin{figure}[h]
@@ -402,36 +428,150 @@ Cela nous a amener à calculer le diamètre dans trois cas (\ref{flex}):
     \label{flex}
 \end{figure}
 
-\textcolor{red}{résultat}
+Les résultats analytiques nous ont guidé à choisir un tube avec un diamètre supérieur 8mm afin de ne pas dépasser la limite d'élasticité de l'aluminium. Nous sommes parti sur un tube de 12mm car nous en avions à notre disposion et qu'il nous semblait adapter à nos besoins. En effet, les fils électroniques pour le moteur et le servomoteur doivent pouvoir circuler dans le tube.\newline
 
-Pour confirmer nos calculs théoriques, nous avons décidé de faire une simulation sur Abaqus.\newline
+Nous avons ensuite mené nos expériences en considérant le tube de 12mm. Nous confirmons sa géométrie grâce aux résultats qui suivent.
 
-\textcolor{red}{résultat}
+\subsubsection{Expérience de flexion du tube}
 
-Nous avons également réalisé l'expérience afin de valider notre structure.\newline
+Nous avons réalisé une expérience de flexion sur notre tube afin de valider notre structure. Le but est d'obtenir le déplacement de notre tube lorsque des efforts sont appliqués sur son extrémité libre. Pour cela, nous avons fixé l'extrémité du coté du fuselage pour avoir un encastrement. Nous avons réalisé notre mesure par photogrammetrie à l'aide d'une caméra. Nous avons mis en place des petites étiquettes, point blanc sur fond noir, qui servent de points de référence aux mesures.\newline
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=7cm]{figures/exp.png}
+    \caption{Montage pour l'expérience de flexion du tube}
+    \label{mont}
+\end{figure}
+\newpage
 
-\textcolor{red}{résultat}
+Nous avons d'abord fait l'aquisition d'une photo sans poids pour avoir la photo de référence. Puis, nous avons progressivement ajouter des masses au bout libre du tube pour réaliser plusieurs photos (130g, 230g, 330g, 430g, 530g).  Sur le logiciel Gom Correlate 2018, nous avons sélectionné les points de référence sur l'image initiale. Puis, nous avons obtenu les résultats de flexion de notre tube pour les différentes masses.\newline
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=7cm]{figures/530.jpg}
+    \caption{Résultat du déplacement du tube pour une masse de 530g}
+    \label{dep}
+\end{figure}
+
+Pour la masse la plus importante testée m=530g, nous avons obtenu un déplacement de 14,75mm.
+
+\subsubsection{Simulation de la flexion du tube sur Abaqus}
+
+Pour vérifier le résultat experimental, nous avons décidé de faire une simulation sur Abaqus. Nous avons donc utiliser les modélisations du tube et de l'aile aux dimensions de notre prototype lors de l'expérience. Nous avons pris le module d'Young de l'aluminium E=70 000MPa et du polystyrène E=3 000MPa, ne connaissant pas ceux exacts de nos matériaux.\newline
+
+Nous avons réalisé la simulation pour une force en bout de tube correspondant à notre masse maximale (530g) lors de l'expérience.C'est-à-dire une force F=5,2N.\newline
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=8cm]{figures/simu.png}
+    \caption{Simulation sur Abaqus du déplacement du tube pour une masse de 530g}
+    \label{dep}
+\end{figure}
+
+Nous obtenons un déplacement en bout du tube de 14,3mm. Ce résultat est satisfaisant car il confirme la cohérence du résultat obtenu pendant l'expérience.
 
 \subsection{Empennage}
 
-L'empennage de notre drone est un empennage classique position basse. Cette empennage permet de venir stabiliser le vol de notre drone. L'empennage, comme les ailes, est en polystyrène. Il est découpé au fil chaud.
+L'empennage de notre drone est un empennage classique position basse. Cette empennage permet de venir stabiliser le vol de notre drone. L'empennage, comme les ailes, est en polystyrène. Il est découpé au fil chaud. Les gouvernes de profondeur sont mobiles. Elles sont actionnées par des servomoteurs situés dans le fuselage.
 
 \begin{figure}[h]
     \centering
     \includegraphics[height=4cm]{figures/emp.jpeg}
     \caption{Représentation de l''empennage}
-    \label{flex}
+    \label{emp}
 \end{figure}
 
 \newpage
 \section{Contrôle du drone}
 
-\subsection{Système électronique}
+\subsection{Le contrôleur de vol : Ardupilot}
 
-\subsection{Interface de commande}
+Le pilotage de notre drone nécessite la présence d’un contrôleur de vol. Il nous est apparu naturellement le choix de Ardupilot.
 
-\subsection{Automatisation}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=2cm]{figures/ardu.png}
+\end{figure}
+\subsubsection{Pourquoi Ardupilot ?}
+
+Ardupilot est un contrôleur de vol open source développé par une communauté active offrant une large gamme de configuration de vol. La sélection d’Ardupilot s’est faite sur la base de plusieurs critères. Pour notre VTOL nous avions besoin d’un logiciel fiable avec une grande polyvalence qui puisse à terme répondre à nos exigences techniques, avec notamment la partie vol autonome et la connexion avec nos composants électroniques.
+
+\subsubsection{Fiabilité}
+
+Dans un premier temps Ardupilot répond à notre critère fiabilité avec sa grande base d’utilisateurs et de testeurs qui a fait de ce logiciel open source un des contrôleurs de vol les plus fiable et robuste disponibles actuellement.
+Avec sa capacité à gérer de nombreuses configurations de véhicules, il devient un choix promettant fiabilité pour notre configuration VTOL.
+
+\subsubsection{Adaptabilité}
+
+Le contrôleur peut prendre en charge une large gamme de composants et de plateformes matérielles, ce qui nous permet d’avoir le libre choix sur les autopilotes tant qu’ils supportent Ardupilot. Cela nous a permis de choisir un autopilot précis répondant à nos besoins spécifiques.
+
+\subsubsection{Fonctionnalités avancées}
+
+Finalement, ce sont les fonctionnalités avancées du contrôleur de vol qui nous ont convaincus.\newline
+
+Ardupilot va proposer une large gamme de modes de vol autonomes. Cela nous a offert un grand choix d’options pour contrôler le comportement de notre véhicule. Cela va inclure notre utilisation de modes tels que le mode empêchant le décrochage de l’appareil ou encore le mode guidé par GPS à une altitude donnée. Mais aussi le mode RTL (Return To Launch) qui va permettre un retour automatique au point de départ.\newline
+
+Ardupilot peut aussi prendre en charge la planification de missions. Nous pouvons alors en tant qu’utilisateur définir des waypoints (point de passage) et ou des trajectoires spécifiques pour notre VTOL. Cette extension nous permet d’établir des itinéraires précis répondant au cahier des charges de notre VTOL pour l’aide au sauvetage en mer.\newline
+
+Avec une gestion avancée des paramètres du système de positionnement global (GPS), ArduPilot permet une navigation précise et fiable. Garantissant que le véhicule reste sur la bonne trajectoire, suive les waypoints et puisse effectuer des opérations de manière autonome en utilisant les informations de localisation.\newline
+
+La gestion de la télémétrie est aussi comprise par le contrôleur Ardupilot. Cela nous permet un suivi en temps réel des données de l’appareil au sol. Nous pouvons avec ce contrôleur de vol avoir la position GPS, l'altitude, la vitesse, l’état de la caméra et la tension de la batterie. Ces informations sont essentielles pour prendre des décisions en vol et pour assurer un contrôle précis du véhicule. Cela permet des décisions d’actions avec un maximum d’informations lors de la mission de sauvetage en mer.\newline
+
+Le contrôleur Ardupilot comprend une fonction de stabilisation qui nous assure un vol stable lors de nos missions. Il aide à corriger les mouvements indésirables du véhicule pour minimiser le tangage et le roulis de l’appareil et ainsi maintenir une trajectoire précise.
+Un avantage du contrôleur consiste en la grande compatibilité avec des modules tiers. Cela nous permet d’étendre les capacités de notre VTOL en intégrant la caméra.\newline
+
+Ces fonctionnalités avancées d’Ardupilot nous permettent d’adapter notre VTOL en fonction de nos besoins spécifiques. De plus, étant open source, nous pouvons modifier le code générique pour l’adapter au mieux à nos appareils embarqués.
+
+\subsection{Le choix du Pixhawk}
+
+Le choix de l’autopilote dépend de la contrainte physique du véhicule, de ses caractéristiques et des applications que l’on veut utiliser.\newline
+Pour nous décider nous avons sélectionné plusieurs critères
+Le nombre de sorties, assez pour avoir 2 servomoteurs et 2 moteurs.\newline
+
+Le nombre d'UART, l'UART correspond à récepteur /émetteur asynchrone universel et définit un protocole, ou un ensemble de règles, dédié à l'échange de données série entre deux appareils. L'UART est très simple et utilise uniquement deux câbles entre l'émetteur et le récepteur pour émettre et recevoir dans les deux sens. Les radios de télémétrie, le GPS pourront être connectés via ces ports.\newline
+
+Les bus externes tels que I2C, CAN, etc. Qui permettent à de nombreux types de dispositifs, tels que les capteurs de vitesse, d'être connectés au pilote automatique.\newline
+
+Le nombre d'E/S analogiques fut déterminant. Certains contrôleurs disposent d'E/S analogiques pour des fonctions telles que l'entrée de l'intensité du signal du récepteur (RSSI) ou de la tension/courant de la batterie ou d'autres capteurs analogiques.\newline
+
+Les fonctions intégrées telles que les capteurs intégrés de surveillance de la batterie.
+
+Pixhawk s’est imposé à nous pour plusieurs raisons :
+\begin{itemize}
+    \item Sa simplicité de mise en œuvre et son nombre de ports importants. Les ports sont variés (E/S, UART…) et spécifiques à chaque capteur et actionneurs, nous permettant de remplir facilement certaines conditions essentielles imposées par Dassault (bouton shutdown, port GPS...).
+    \item La redondance de ses capteurs internes (accéléromètre, gyroscope, magnétomètre).
+    \item Le prix contenu (trouvé à 112 euros).
+    \item Son poids très contenu.
+    \item Ses petites dimensions (8.2x4.3x1.7cm), le rendant facilement logeable dans le fuselage.
+\end{itemize}
+Au vu de ces éléments, nous avons fait notre choix sur le Pixhawk 2.4.8 car il satisfait nos critères sur le nombre et la diversité de ces ports, ainsi que son prix. Afin d’améliorer sa stabilité on pourra lui ajouter des patins en caoutchouc pour limiter la vibration et donc le bruit sur ses capteurs.
+
+\subsection{Fonctionnement global du système utilisant Ardupilot}
+
+\subsubsection{Objectif Premier}
+L’objectif d’Ardupilot est d’assurer le contrôle de notre VTOL. Cela se fait soit de manière autonome, soit par l’intermédiaire d’un pilote au sol à l’aide d’une télécommande ou à l’aide d’un logiciel de contrôle au sol. Comme exprimé précédemment, nous avons choisi le boitier Pixhawk comme solution d’interface entre Ardupilot et les capteurs.
+
+\subsubsection{Entrées}
+Les entrées du contrôleur sont transmises soit par une télécommande en fréquence radio, soit via un logiciel de contrôle au sol via un protocole Mavlink. Le récepteur radio fournit les entrées de roulis, de tangage et de lacet pour le contrôle de l’altitude. Il fournit aussi la puissance délivrée par les moteurs (l’accélération) et des instructions pour des fonctions supplémentaires telles que la rotation des moteurs ou une instruction de largage pour notre bouée (qui correspondra à un angle de rotation du crochet). Ces paramètres peuvent aussi être contrôlés via le logiciel de contrôle au sol dans une optique d’un appareil autonome.
+
+\subsubsection{Sorties}
+
+Les sorties sont les commandes activant la rotation des servos, la répartition de puissance sur les moteurs, les indicateurs sonores et le retour d’état global du drone (indications capteurs) à l’utilisateur.
+
+\subsubsection{Capteurs}
+
+L'attitude, la position, la surveillance du système d'alimentation et la vitesse du véhicule sont fournies par des capteurs présents dans le Pixhawk qui servira de relais physique entre Ardupilot et les actionneurs. Celui-ci comprend 2 accéléromètres, 2 gyroscopes et un magnétomètre intégrés. La redondance de ces capteurs permet de réduire le bruit en effectuant une “sensor fusion”, soit comparer les différentes valeurs observées afin de les améliorer. Un GPS sera également présent en externe, relié à Ardupilot grâce au Pixhawk.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=12cm]{figures/elec.png}
+    \caption{Schéma du système électronique}
+\end{figure}
+
+\subsubsection{Quelques précisions sur les composants :}
+
+ESC (Electronic Speed Controller) : Il sert de variateur pour distribuer la puissance aux moteurs sur les ordres du contrôleur de vol.\newline
+
+Jetson Nano : Ordinateur compact pour traiter le retour caméra. Il calcule l’emplacement du nageur en détresse et donne l’information à Ardupilot.
 
 \chapter{Réalisation de la mission : systèmes de sauvetage}
 
@@ -479,8 +619,8 @@ La charge utile dans le cadre de notre mission sera une bouée autogonflante de 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[height=5cm]{figures/bouee.png}
-    \caption{title}
+    \includegraphics[height=4cm]{figures/bouee.png}
+    \caption{Pochette contenant la bouée gonflabe de la marque OneUp}
 \end{figure}
 
 Le système de largage est constitué d’une nacelle placée sous le fuselage. Le système est simple : le servomoteur présent à l’avant de la nacelle manipule un crochet qui, en vol, maintient le plancher de la nacelle fermé. Le plancher sur lequel repose la bouée est donc relié à la nacelle par une liaison pivot libre, et est uniquement retenu en position fermée par la pression exercée par le crochet. Des ressorts le relient également au sommet de la nacelle mais sont insuffisants pour, par leur simple traction, maintenir le plancher fermé lorsque la charge est placée dessus. Dans le cas où lors du largage de la bouée une rafale l’entraînerait loin du nageur en détresse, nous avons fait le choix d’accrocher un fil à la bouée, relié à son autre extrémité par une simple boucle autour du crochet.\newline
@@ -488,31 +628,32 @@ Le système de largage est constitué d’une nacelle placée sous le fuselage. 
 \begin{figure}[h]
     \centering
     \includegraphics[height=5cm]{figures/b1.png}
-    \caption{title}
+    \caption{Schéma du vol stabilisé}
 \end{figure}
 
 Lors du largage, le servomoteur abaisse le crochet afin de libérer la pression contre le plancher, celui-ci s’abaisse alors et la bouée tombe librement. Afin d’éviter que le fil ne se tende lors de la chute et cause des dommages au drone, il faut s’assurer de larguer la charge à une hauteur inférieure à la longueur du fil. La bouée touche alors l’eau et se gonfle seule, toujours maintenue par le fil au crochet.\newline
 
 \begin{figure}[h]
     \centering
-    \includegraphics[height=5cm]{figures/b2.png}
-    \caption{title}
+    \includegraphics[height=6cm]{figures/b2.png}
+    \caption{Schéma de l'étape de largage de la bouée}
 \end{figure}
 
 Deux cas s’offrent alors : soit la bouée est suffisamment proche du nageur qui la récupère directement, soit la bouée n’a pas atterrit à l’emplacement voulu et il est nécessaire de la tracter vers le nageur (dans la mesure des capacités du drone et de la force des vagues).\newline
 
+\newpage
 \begin{figure}[h]
     \centering
-    \includegraphics[height=5cm]{figures/b3.png}
-    \caption{title}
+    \includegraphics[height=8cm]{figures/b3.png}
+    \caption{Schéma du tractage de la bouée}
 \end{figure}
 
 Une fois la bouée saisie par le nageur en détresse, le drone abaisse complètement son crochet (sur commande manuelle de l’opérateur) pour libérer le fil et donc la bouée. La présence des ressorts permettent de tirer le plancher de la nacelle vers le haut. Il est ensuite verrouillé par le crochet qui retourne dans sa position initiale. Le drone peut alors revenir sans risques à son point de départ.\newline
 
 \begin{figure}[h]
     \centering
-    \includegraphics[height=5cm]{figures/b4.png}
-    \caption{title}
+    \includegraphics[height=8cm]{figures/b4.png}
+    \caption{Schéma de libération du fil}
 \end{figure}
 
 Cette nacelle sera placée de manière à ce que son centre de masse (lorsqu’elle est chargée) soit sur le même axe vertical que le centre de gravité de l’appareil, soit au niveau de la clé d’aile. Le tout afin d’influencer le moins possible le comportement en vol horizontal stabilisé du drone. Il faudra dès lors prendre en compte qu’une fois la bouée larguée, le centre de masse de la nacelle se déplacera légèrement vers l’avant (dû au poids du servomoteur) et provoquera un léger moment à piquer, ce qui est préférable à un moment à cabrer.
