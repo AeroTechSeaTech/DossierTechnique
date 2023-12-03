@@ -130,6 +130,7 @@ Nous remercions tout particulièrement l'équipe encadrante du \textsc{Dassault}
 \begin{abstract}
     Dans le cadre de la compétition \textsc{Dassault} UAV Challenge, notre équipe s'attelle à la conception d'un drone VTOL dédié aux opérations de sauvetage en mer. De la sélection de la structure au dimensionnement précis des composants, chaque étape de notre processus de développement est réalisée de manière à créer un drone aussi performant que possible, tout en répondant aux exigences rigoureuses définies par la compétition.
 
+    \noindent
     Grâce à la diversité de nos compétences et à nos recherches approfondies, nous avons fusionné nos connaissances dans le cadre de ce projet pluridisciplinaire. De la modélisation à la simulation, en passant par la programmation, l'automatisation et l'électronique, chaque domaine a été abordé avec une attention particulière. Notre objectif est de présenter un drone qui allie l'expertise technique à une approche globale pour répondre efficacement aux défis complexes du sauvetage en mer. \vskip4cm
 
     \begin{center}
@@ -137,7 +138,10 @@ Nous remercions tout particulièrement l'équipe encadrante du \textsc{Dassault}
     \end{center}
 
     \noindent
-    \textcolor{red}{traduire}
+    As part of the Dassault UAV Challenge competition, our team is dedicated to designing a VTOL drone for sea rescue operations. From selecting the structure to precisely sizing the components, each step of our development process is carried out to create a drone that is as high-performing as possible, while meeting the rigorous requirements set by the competition.
+
+    \noindent
+    Thanks to the diversity of our skills and in-depth research, we have integrated our knowledge within the framework of this multidisciplinary project. From modeling to simulation, through programming, automating, and electronics, each domain has been approached with special attention. Our goal is to present a drone that combines technical expertise with a comprehensive approach to effectively address the complex challenges of sea rescue.
 \end{abstract}
 
 \chapter*{Introduction}
@@ -380,7 +384,7 @@ Nous avons obtenu des résultats très satisfaisant avec une différence inféri
 \newpage
 \subsection{Systèmes moteur}
 
-Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout en assurant sa stabilité, et assurer la translation vertical du drone en mode hélicoptère. Nous nous sommes alors penchés sur la manière de concevoir le socle du moteur sur l’aile permettant d'assurer ces tâches. Sachant qu’à notre disposition nous possédons des moteurs brushless (BR2212), l’architecture du socle moteur a été construite sur cette base. Le système moteur ainsi conçu doit répondre aux critères de notre mission, soit lui permettre de faire décoller l’appareil à la verticale puis de changer sa position de vol pour passer à un vol horizontal. \newline
+Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout en assurant sa stabilité, et assurer la translation vertical du drone en mode hélicoptère. Nous nous sommes alors penchés sur la manière de concevoir le socle du moteur sur l’aile permettant d'assurer ces tâches. Sachant qu’à notre disposition nous possédons des moteurs brushless, l’architecture du socle moteur a été construite sur cette base. Le système moteur ainsi conçu doit répondre aux critères de notre mission, soit lui permettre de faire décoller l’appareil à la verticale puis de changer sa position de vol pour passer à un vol horizontal. \newline
 
 L’idée consiste à permettre la rotation du socle moteur sur le support de l’aile, tout en minimisant l’espace qu’il utilise et en l’empêchant de glisser longitudinalement sur le support de l’aile. La rotation s’effectue à l’aide de deux engrenages. Le train d’entrée est mis en rotation à l’aide d’un servomoteur. Il faut donc un support pour celui-ci.\newline
 
