@@ -159,7 +159,8 @@ Nous sommes impatients de démontrer comment notre drone VTOL peut répondre aux
 
 \section{Contexte et mission : sauvetage en mer}
 
-Tout d'abord, notre école d'ingénieur SeaTech étant situé à Toulon, première base navale française et premier port de défense d'Europe, et ayant une identité tournée vers le maritime, il nous a paru naturel d'orienter la mission de notre drone vers ce dernier. De plus, sur la côte d'Azur, nous imaginons que les besoins de sauvetage en saison estivale sont amplifiés. C'est pourquoi, nous voulons que notre drone puisse apporter assistance à une personne en mer. Cela passe par sa détection, avec le renvoi d'une coordonnée GPS aux sauveteurs, et par l'assistance d'une bouée de sauvetage en attendant les sauveteurs. Ces informations sont représentées sous un diagramme bête à corne ci-dessous (\ref{bete}).
+Tout d'abord, nous avons à c\oe ur la sécurité de nos côtes : l’école d’ingénieur SeaTech est ancrée dans l’environnement marin et maritime toulonnais. C'est pourquoi, nous voulons que notre drone porte assistance aux baigneurs. Ce drone serait particulièrement utile en période de forte pression des services de secours, notamment lors de la saison estivale. Le drone permet la détection du baigneur, avec le renvoi d'une coordonnée GPS aux sauveteurs, et l'assistance d'une bouée de sauvetage en les attendant. Ces informations sont représentées sous un diagramme bête à corne ci-dessous (\ref{bete}).
+
 \bigskip
 
 \begin{figure}[h]
@@ -173,7 +174,7 @@ Tout d'abord, notre école d'ingénieur SeaTech étant situé à Toulon, premiè
 
 \subsubsection*{Diagramme des interacteurs}
 
-La réalisation de notre drone nécessite de comprendre les liens qui l’unissent aux différents acteurs qu’il rencontrera, dans le but de déterminer l’environnement dans lequel il devra évoluer. Cet environnement conditionne les fonctions de notre drone, divisées en deux types : les principales (FP) et contraintes (FC).
+Les contraintes de notre drone sont particulières étant donné son fonctionnement VTOL et sa capacité à évoluer à proximité de la mer. Nous résumons ces contraintes liées aux interacteurs sous forme du diagramme suivant et du tableau de contraintes.
 
 \begin{figure}[h]
     \centering
@@ -269,7 +270,7 @@ Les exigences que nous détaillons ci-dessous correspondent aux valeurs du proto
 
 \newpage
 \subsubsection{Diagramme cinématique}
-Nous avons réalisé le diagramme cinématique de notre drone afin de visualiser les différents acteurs.
+Nous avons réalisé le diagramme cinématique de notre drone afin de visualiser les différents actionneurs.
 \begin{figure}[h]
     \centering
     \includegraphics[height=10cm]{figures/cine.png}
@@ -287,7 +288,7 @@ Dans cette partie, nous présenterons la structure du drone et les choix qui ont
 
 \subsection{Fuselage}
 
-Pour le fuselage de l’avion, nous avons pensé à une base simple et modifiable selon l’avancée du projet. Elle reprend l’idée générale de la calandre du VTOL développée par le Youtuber Tom Stanton. Pour allier tous nos objectifs de mission, le fuselage  comprend plusieurs éléments qui pourront évoluer au fil de notre conception. La structure a été adaptée pour fixer une plateforme Pixhawk à l’horizontale, mais contiendra aussi la batterie et l’électronique embarqué.
+Pour le fuselage de l’avion, nous avons pensé à une base simple et modifiable selon l’avancée du projet. Elle reprend l’idée générale de la structure du VTOL développée par le Youtuber Tom Stanton. Pour allier tous nos objectifs de mission, le fuselage  comprend plusieurs éléments qui pourront évoluer au fil de notre conception. La structure a été adaptée pour fixer une plateforme Pixhawk à l’horizontale, mais contiendra aussi la batterie et l’électronique embarquée.
 
 \begin{figure}[h]
     \centering
@@ -307,7 +308,7 @@ Elle comprend :
               \label{clé}
           \end{figure}
           \newpage
-    \item 2 plaques extérieures qui vont représenter une première protection pour l’électronique embarqué.
+    \item 2 plaques extérieures qui vont représenter une première protection pour l’électronique embarquée.
     \item Une pièce de fixation de queue permettant la fixation de l’ensemble tube-empennage. Elle a été conçue pour allier une réduction maximale de sa masse et une résistance maximale.
           \begin{figure}[h]
               \centering
@@ -348,36 +349,36 @@ Avec $C_z$ le coefficient de portance.
 Nous déterminons ainsi la surface.
 $$S=\frac{2F_p}{\rho C_z v^2}$$
 
-Nous réalisons les calculs lorsque la force de portance égalise celle du poids du drone : $F_p=P.$ Avec une masse de $m=1$kg, nous avons $F_p=9,81$N. Nous choisissons un angle d'incidence de $6°$ ce qui nous donne un coefficient de portance $C_z=1,2$ (d'après la figure \ref{cz}).\newline
+Nous réalisons les calculs lorsque la force de portance égalise celle du poids du drone : $F_p=P.$ Avec une masse de $m=1$kg, nous avons $F_p=9,81$N. Nous choisissons un angle d'incidence de $6^\circ$ ce qui nous donne un coefficient de portance $C_z=1,2$ (d'après la figure \ref{cz}).\newline
 
 Nous trouvons après application numérique une surface de $S=1,265$$m^2$, avec $\rho=1,292$kg/$m^3$ et $v=10$m/s.\newline
 
     Nous décidons ainsi de dimensionner notre aile de $60cm$ de longeur et $20cm$ de large.
 
-\subsubsection*{Conception de l'aile}
+    \subsubsection*{Conception de l'aile}
 
-Notre aile a été modélisé sur CatiaV5.
+    Notre aile a été modélisé sur CatiaV5.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[height=5cm]{figures/ailec.png}
-    \caption{Modélisation de l'aile sur Catia}
-    \label{aile}
-\end{figure}
-\newpage
+    \begin{figure}[h]
+        \centering
+        \includegraphics[height=5cm]{figures/ailec.png}
+        \caption{Modélisation de l'aile sur Catia}
+        \label{aile}
+    \end{figure}
+    \newpage
 
-Le carré visible sur la modélisation (figure \ref{aile}) correspond à l'encastrement avec la clé d'aile (figure \ref{clé}) qui permet de fixer la rotation de notre aile avec le fuselage.\newline
+    Le carré visible sur la modélisation (figure \ref{aile}) correspond à l'encastrement avec la clé d'aile (figure \ref{clé}) qui permet de fixer la rotation de notre aile avec le fuselage.\newline
 
-Pour la fabrication de notre aile, nous avons choisi le polystyrène. Elle est découpée à l'aide d'une découpeuse à fil chaud.
-\label{ailefini}
-\begin{figure}[h]
-    \centering
-    \includegraphics[height=5cm]{figures/ailepoly.png}
-    \caption{Aile en polystyrène après découpe}
-    \label{ailepoly}
-\end{figure}
+    Pour la fabrication de notre aile, nous avons choisi le polystyrène. Elle est découpée à l'aide d'une découpeuse à fil chaud.
+    \label{ailefini}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[height=5cm]{figures/ailepoly.png}
+        \caption{Aile en polystyrène après découpe}
+        \label{ailepoly}
+    \end{figure}
 
-Afin de vérifier la précision de la géométrie de notre découpe, nous avons utilisé un scanner laser 3D. Cette machine réalise des mesures optiques avec une précision de 25 micron.\newline
+    Afin de vérifier la précision de la géométrie de notre découpe, nous avons utilisé un scanner laser 3D. Cette machine réalise des mesures optiques avec une précision de 25 $\mu m$.\newline
 
 Une fois la manipulation terminée, nous avons importé la modélisation de l'aile dans le logiciel qui a stocké l'aquisition (Inspector Prenium) pour comparer la densité de points dans l'espace du modèle numérique et du modèle expérimental.\newline
 
@@ -393,7 +394,7 @@ Nous avons obtenu des résultats très satisfaisant avec une différence inféri
 \newpage
 \subsection{Système moteur}
 
-Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout en assurant sa stabilité, et assurer la translation vertical du drone en mode hélicoptère. Nous nous sommes alors penchés sur la manière de concevoir le socle du moteur sur l’aile permettant d'assurer ces tâches. Sachant qu’à notre disposition nous possédons des moteurs brushless, l’architecture du socle moteur a été construite sur cette base. Le système moteur ainsi conçu doit répondre aux critères de notre mission, soit lui permettre de faire décoller l’appareil à la verticale puis de changer sa position de vol pour passer à un vol horizontal. Ci-dessous le schéma cinématique.\newline
+Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout en assurant sa stabilité, et assurer un déplacement vertical du drone. Nous nous sommes alors penché sur la manière de concevoir le socle du moteur sur l’aile. Nous disposons de moteurs brushless. C'est pourquoi, nous avons adapté l’architecture du socle à ce moteur. Le système moteur ainsi conçu doit répondre aux critères de notre mission, c'est-à-dire décoller verticalement puis se déplacer horizontalement. Il est décrit par le schéma cinématique ci-après.\newline
 
 \begin{figure}[h]
     \centering
@@ -401,7 +402,7 @@ Le système moteur a deux objectifs : diriger l'appareil en vol horizontal tout 
     \caption{Schéma cinématique du système moteur}
 \end{figure}
 
-L’idée consiste de permettre la rotation du socle moteur sur le support de l’aile, tout en minimisant l’espace qu’il utilise et en l’empêchant de glisser longitudinalement sur le support de l’aile. La rotation s’effectue à l’aide de deux engrenages. Le train d’entrée est mis en rotation à l’aide d’un servomoteur. Il faut donc un support pour celui-ci.\newline
+L’idée consiste de permettre la rotation du socle moteur sur le support de l’aile, tout en minimisant l’espace qu’il utilise et en l’empêchant de glisser longitudinalement sur le support de l’aile. La rotation s’effectue à l’aide de deux engrenages. Le train d’entrée est mis en rotation à l’aide d’un servomoteur dont il faut créer un support également.\newline
 
 De là, 3 pièces sont à créer :
 \begin{itemize}
@@ -426,19 +427,19 @@ Les pièces sont ainsi réalisées sous CatiaV5.
 \end{figure}
 
 \newpage
-\subsection{Structure entre le fuselage et les moteurs : tubes}
+\subsection{Poutre de liaison entre le fuselage et les moteurs}
 
 Nos systèmes moteur sont reliés au fuselage par l'intermédiaire de tubes creux en aluminium. Pour cela, nous devons mener une étude pour choisir judicieusement les dimensions de ce tube.\newline
 
-Tout d'abord, étant donné que notre aile fait une longueur de 60cm, nous choisissons de prendre un tube d'une longueur de 70cm. En effet, nous devons prendre en compte  le support moteur au bout du tube en plus de l'aile.\newline
+Tout d'abord, nous choisissons un tube d'une longueur de 70cm qui prend en compte la longueur de l'aile (60cm) et le support moteur en bout de tube.\newline
 
-Dans un second temps, nous devons choisir le diamètre du tube. Nous avons donc fait une étude de résitance des matériaux afin de le déterminer en fonction de la limite d'élasticité de l'aluminium et les paramètres de notre système.\newline
+Dans un second temps, nous devons choisir le diamètre du tube. Nous avons donc fait une étude de résistance des matériaux afin de le déterminer en fonction de la limite d'élasticité de l'aluminium et les paramètres de notre système.\newline
 
 Cela nous a amené à calculer le diamètre dans trois cas (\ref{flex}):
 \begin{itemize}
     \item Cas 1 : drone à l'arrêt, le tube supporte la force du poids (P),
     \item Cas 2 : drone en vol vertical, le tube supporte la force du poids (P) et la force moteur (F),
-    \item Cas 3 : drone en vol horizontale, le tube suporte la force du poids (P) et la force linéique de la portance (w) sur toute l'aile.
+    \item Cas 3 : drone en vol horizontale, le tube supporte la force du poids (P) et la force linéique de la portance (w) sur toute l'aile.
 \end{itemize}
 
 \begin{figure}[h]
@@ -448,37 +449,20 @@ Cela nous a amené à calculer le diamètre dans trois cas (\ref{flex}):
     \label{flex}
 \end{figure}
 
-Les résultats analytiques nous ont guidé à choisir un tube avec un diamètre supérieur 8mm afin de ne pas dépasser la limite d'élasticité de l'aluminium. Nous sommes parti sur un tube de 12mm car nous en avions à notre disposion et qu'il nous semblait adapter à nos besoins. En effet, les fils électroniques pour le moteur et le servomoteur doivent pouvoir circuler dans le tube.\newline
+Les résultats analytiques nous ont guidé à choisir un tube avec un diamètre supérieur 8mm afin de ne pas dépasser la limite d'élasticité de l'aluminium. Nous sommes parti sur un tube de 12mm car nous en avions à notre disposition et qu'il nous semblait adapter à nos besoins. En effet, les fils électroniques pour le moteur et le servomoteur doivent pouvoir circuler dans le tube.\newline
+Nous avons retenu un tube de 12mm car :
+\begin{itemize}
+    \item il permet le passage des câbles d’alimentation et de commande des servomoteurs et des moteurs
+    \item nous en avions à disposition
+\end{itemize}
 
-Nous avons ensuite mené nos expériences en considérant le tube de 12mm. Nous confirmons sa géométrie grâce aux résultats qui suivent.
-
-\subsubsection{Expérience de flexion du tube}
-
-Nous avons réalisé une expérience de flexion sur notre tube afin de valider notre structure. Le but est d'obtenir le déplacement de notre tube lorsque des efforts sont appliqués sur son extrémité libre. Pour cela, nous avons fixé l'extrémité du coté du fuselage pour avoir un encastrement. Nous avons réalisé notre mesure par photogrammetrie à l'aide d'une caméra. Nous avons mis en place des petites étiquettes, point blanc sur fond noir, qui servent de points de référence aux mesures.\newline
-\begin{figure}[h]
-    \centering
-    \includegraphics[height=7cm]{figures/exp.png}
-    \caption{Montage pour l'expérience de flexion du tube}
-    \label{mont}
-\end{figure}
-\newpage
-
-Nous avons d'abord fait l'aquisition d'une photo sans poids pour avoir la photo de référence. Puis, nous avons progressivement ajouter des masses au bout libre du tube pour réaliser plusieurs photos (130g, 230g, 330g, 430g, 530g).  Sur le logiciel Gom Correlate 2018, nous avons sélectionné les points de référence sur l'image initiale. Puis, nous avons obtenu les résultats de flexion de notre tube pour les différentes masses.\newline
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[height=7cm]{figures/530.jpg}
-    \caption{Résultat du déplacement du tube pour une masse de 530g}
-    \label{dep}
-\end{figure}
-
-Pour la masse la plus importante testée m=530g, nous avons obtenu un déplacement de 14,75mm.
+Nous avons mené nos expériences avec le tube de 12mm. Nous confirmons sa géométrie grâce aux résultats qui suivent.
 
 \subsubsection{Simulation de la flexion du tube sur Abaqus}
 
-Pour vérifier le résultat experimental, nous avons décidé de faire une simulation sur Abaqus. Nous avons donc utiliser les modélisations du tube et de l'aile aux dimensions de notre prototype lors de l'expérience. Nous avons pris le module d'Young de l'aluminium E=70 000MPa et du polystyrène E=3 000MPa, ne connaissant pas ceux exacts de nos matériaux.\newline
+Avant de réaliser des expériences qui pourraient potentiellement endommager notre prototype, nous faisons une simulation informatique permettant d’évaluer l'ordre de grandeur du poids maximal applicable en bout d’aile sans déformation irréversible. Nous avons réalisé cette simulation sur Abaqus. Nous avons utilisé les modélisations du tube et de l'aile aux dimensions de notre prototype lors de l'expérience. Nous avons pris le module d'Young de l'aluminium E=70 000MPa et du polystyrène E=3 000MPa, ne connaissant pas ceux exacts de nos matériaux.\newline
 
-Nous avons réalisé la simulation pour une force en bout de tube correspondant à notre masse maximale (530g) lors de l'expérience.C'est-à-dire une force F=5,2N.\newline
+Nous avons réalisé la simulation pour une force en bout de tube correspondant à notre masse maximale (530g) lors de l'expérience. C'est-à-dire une force F=5,2N.\newline
 
 \begin{figure}[h]
     \centering
@@ -487,15 +471,37 @@ Nous avons réalisé la simulation pour une force en bout de tube correspondant 
     \label{dep}
 \end{figure}
 
-Nous obtenons un déplacement en bout du tube de 14,3mm. Ce résultat est satisfaisant car il confirme la cohérence du résultat obtenu pendant l'expérience.
+Nous obtenons un déplacement en bout du tube de 14,3mm.
 
-\subsection{Empennage}
+\subsubsection{Expérience de validation du dimensionnement du tube : contrainte de flexion}
 
-L'empennage de notre drone est un empennage classique position basse. Cette empennage permet de venir stabiliser le vol de notre drone. L'empennage, comme les ailes, est en polystyrène. Il est découpé au fil chaud. Les gouvernes de profondeur sont mobiles. Elles sont actionnées par des servomoteurs situés dans le fuselage.
+Le but de notre expérience est d'obtenir le déplacement de notre tube lorsque des efforts sont appliqués sur son extrémité libre. Pour cela, nous avons fixé l'extrémité du coté du fuselage pour avoir un encastrement. Nous avons réalisé notre mesure par photogrammétrie à l'aide d'une caméra. Nous avons mis en place des petites étiquettes, point blanc sur fond noir, qui servent de points de référence aux mesures.\newline
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=7cm]{figures/exp.png}
+    \caption{Montage pour l'expérience de flexion du tube}
+    \label{mont}
+\end{figure}
+\newpage
+
+Nous avons d'abord fait l'acquisition d'une photo sans poids pour avoir la photo de référence. Puis, nous avons progressivement ajouter des masses au bout libre du tube pour réaliser plusieurs photos (130g, 230g, 330g, 430g, 530g).  Sur le logiciel Gom Correlate 2018, nous avons sélectionné les points de référence sur l'image initiale. Puis, nous avons obtenu les résultats de flexion de notre tube pour les différentes masses.\newline
 
 \begin{figure}[h]
     \centering
-    \includegraphics[height=4cm]{figures/emp.jpeg}
+    \includegraphics[height=7cm]{figures/530.jpg}
+    \caption{Résultat du déplacement du tube pour une masse de 530g}
+    \label{dep}
+\end{figure}
+
+Pour la masse la plus importante testée m=530g, nous avons obtenu un déplacement de 14,75mm.  Ce résultat est satisfaisant car il confirme la cohérence du résultat obtenu par la simulation.
+
+\subsection{Empennage}
+
+L'empennage de notre drone est un empennage classique position basse. Cet empennage permet de stabiliser le vol de notre drone. L'empennage, comme les ailes, est en polystyrène. Il est découpé au fil chaud. Les gouvernes de profondeur sont mobiles. Elles sont actionnées par des servomoteurs situés dans le fuselage.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{figures/emp.jpeg}
     \caption{Représentation de l''empennage}
     \label{emp}
 \end{figure}
@@ -511,59 +517,55 @@ Le pilotage de notre drone nécessite la présence d’un contrôleur de vol. Il
     \centering
     \includegraphics[height=2cm]{figures/ardu.png}
 \end{figure}
-\subsubsection{Pourquoi Ardupilot ?}
+\subsubsection{Le choix d'Ardupilot}
 
-Ardupilot est un contrôleur de vol open source développé par une communauté active offrant une large gamme de configuration de vol. La sélection d’Ardupilot s’est faite sur la base de plusieurs critères. Pour notre VTOL nous avions besoin d’un logiciel fiable avec une grande polyvalence qui puisse à terme répondre à nos exigences techniques, avec notamment la partie vol autonome et la connexion avec nos composants électroniques.
-
-\subsubsection{Fiabilité}
+Ardupilot est un contrôleur de vol open source développé par une communauté active offrant une large gamme de configuration de vol. La sélection d’Ardupilot s’est faite sur la base de plusieurs critères. Pour notre VTOL nous avions besoin d’un logiciel éprouvé par la communauté des modélistes aéronautique. Une grande polyvalence était également requise pour pouvoir répondre à nos exigences techniques (le VTOL étant assez spécifique), avec notamment la partie vol autonome et la compréhension des données émises par nos composants électroniques.
+\subsubsection{1 - Fiabilité}
 
 Dans un premier temps Ardupilot répond à notre critère fiabilité avec sa grande base d’utilisateurs et de testeurs qui a fait de ce logiciel open source un des contrôleurs de vol les plus fiable et robuste disponibles actuellement.
 Avec sa capacité à gérer de nombreuses configurations de véhicules, il devient un choix promettant fiabilité pour notre configuration VTOL.
 
-\subsubsection{Adaptabilité}
+\subsubsection{2 - Adaptabilité}
 
 Le contrôleur peut prendre en charge une large gamme de composants et de plateformes matérielles, ce qui nous permet d’avoir le libre choix sur les autopilotes tant qu’ils supportent Ardupilot. Cela nous a permis de choisir un autopilot précis répondant à nos besoins spécifiques.
 
-\subsubsection{Fonctionnalités avancées}
+\subsubsection{3 - Fonctionnalités avancées}
 
-Finalement, ce sont les fonctionnalités avancées du contrôleur de vol qui nous ont convaincus.\newline
+Finalement, ce sont les fonctionnalités avancées du contrôleur de vol qui nous ont convaincus.
 
-Ardupilot va proposer une large gamme de modes de vol autonomes. Cela nous a offert un grand choix d’options pour contrôler le comportement de notre véhicule. Cela va inclure notre utilisation de modes tels que le mode empêchant le décrochage de l’appareil ou encore le mode guidé par GPS à une altitude donnée. Mais aussi le mode RTL (Return To Launch) qui va permettre un retour automatique au point de départ.\newline
+\paragraph{De nombreux modes disponibles} Ardupilot va proposer une large gamme de modes de vol autonomes. Cela offre un grand choix d’options pour contrôler le comportement de notre véhicule. Il inclut l’utilisation de modes tels que l'anti-décrochage de l’appareil, ou encore le mode "guidé par GPS" à une altitude donnée. Mais aussi le mode RTL (Return To Launch) qui va permettre un retour automatique au point de départ.
 
-Ardupilot peut aussi prendre en charge la planification de missions. Nous pouvons alors en tant qu’utilisateur définir des waypoints (point de passage) et ou des trajectoires spécifiques pour notre VTOL. Cette extension nous permet d’établir des itinéraires précis répondant au cahier des charges de notre VTOL pour l’aide au sauvetage en mer.\newline
+\paragraph{Planification de missions} Ardupilot peut aussi prendre en charge la planification de missions. Nous pouvons alors en tant qu’utilisateur définir des waypoints (point de passage) et ou des trajectoires spécifiques pour notre VTOL. Cette extension nous permet d’établir des itinéraires précis répondant au cahier des charges de notre VTOL pour l’aide au sauvetage en mer.
 
-Avec une gestion avancée des paramètres du système de positionnement global (GPS), ArduPilot permet une navigation précise et fiable. Garantissant que le véhicule reste sur la bonne trajectoire, suive les waypoints et puisse effectuer des opérations de manière autonome en utilisant les informations de localisation.\newline
+\paragraph{Gestion de la localisation} Avec une gestion avancée des paramètres du GPS, ArduPilot permet une navigation précise et fiable. Garantissant que le véhicule reste sur la bonne trajectoire, suive les waypoints et puisse effectuer des opérations de manière autonome en utilisant les informations de localisation.
 
-La gestion de la télémétrie est aussi comprise par le contrôleur Ardupilot. Cela nous permet un suivi en temps réel des données de l’appareil au sol. Nous pouvons avec ce contrôleur de vol avoir la position GPS, l'altitude, la vitesse, l’état de la caméra et la tension de la batterie. Ces informations sont essentielles pour prendre des décisions en vol et pour assurer un contrôle précis du véhicule. Cela permet des décisions d’actions avec un maximum d’informations lors de la mission de sauvetage en mer.\newline
+\paragraph{Suivi en temps réel des paramètres} La gestion de la télémétrie est aussi comprise par le contrôleur Ardupilot. Cela nous permet un suivi en temps réel des données de l’appareil au sol. Nous pouvons avec ce contrôleur de vol avoir la position GPS, l'altitude, la vitesse, l’état de la caméra et la tension de la batterie. Ces informations sont essentielles pour prendre des décisions en vol et pour assurer un contrôle précis du véhicule. Cela permet des décisions d’actions avec un maximum d’informations lors de la mission de sauvetage en mer (comme vérifier que le drone se situe bien au-dessus de sa cible.
 
-Le contrôleur Ardupilot comprend une fonction de stabilisation qui nous assure un vol stable lors de nos missions. Il aide à corriger les mouvements indésirables du véhicule pour minimiser le tangage et le roulis de l’appareil et ainsi maintenir une trajectoire précise.
-Un avantage du contrôleur consiste en la grande compatibilité avec des modules tiers. Cela nous permet d’étendre les capacités de notre VTOL en intégrant la caméra.\newline
+\paragraph{De nombreux modes disponibles} Le contrôleur Ardupilot comprend une fonction de stabilisation qui nous assure un vol stable lors de nos missions. Il aide à corriger les mouvements indésirables du véhicule pour minimiser le tangage et le roulis de l’appareil et ainsi maintenir une trajectoire précise.
+Un avantage du contrôleur consiste en la grande compatibilité avec des modules tiers. Cela nous permet d’étendre les capacités de notre VTOL en intégrant la caméra.
 
-Ces fonctionnalités avancées d’Ardupilot nous permettent d’adapter notre VTOL en fonction de nos besoins spécifiques. De plus, étant open source, nous pouvons modifier le code générique pour l’adapter au mieux à nos appareils embarqués.
+Ces fonctionnalités avancées d’Ardupilot nous permettent d’adapter notre VTOL en fonction de nos besoins spécifiques. De plus, étant open source, nous pouvons modifier le code générique pour l’adapter au mieux à nos composants embarqués.
 
 \subsection{Le choix du Pixhawk}
 
-Le choix de l’autopilote dépend de la contrainte physique du véhicule, de ses caractéristiques et des applications que l’on veut utiliser.\newline
-Pour nous décider nous avons sélectionné plusieurs critères
-Le nombre de sorties, assez pour avoir 2 servomoteurs et 2 moteurs.\newline
-
-Le nombre d'UART, l'UART correspond à récepteur /émetteur asynchrone universel et définit un protocole, ou un ensemble de règles, dédié à l'échange de données série entre deux appareils. L'UART est très simple et utilise uniquement deux câbles entre l'émetteur et le récepteur pour émettre et recevoir dans les deux sens. Les radios de télémétrie, le GPS pourront être connectés via ces ports.\newline
-
-Les bus externes tels que I2C, CAN, etc. Qui permettent à de nombreux types de dispositifs, tels que les capteurs de vitesse, d'être connectés au pilote automatique.\newline
-
-Le nombre d'E/S analogiques fut déterminant. Certains contrôleurs disposent d'E/S analogiques pour des fonctions telles que l'entrée de l'intensité du signal du récepteur (RSSI) ou de la tension/courant de la batterie ou d'autres capteurs analogiques.\newline
-
-Les fonctions intégrées telles que les capteurs intégrés de surveillance de la batterie.
-
-Pixhawk s’est imposé à nous pour plusieurs raisons :
+Le choix de l’autopilote des caractéristiques du drone (motorisation, composants embarqués, taille disponible dans le fuselage) et des applications que l’on veut utiliser.\newline
+Nous avons alors dû définir des critères de sélection pour notre autopilote : \newline
 \begin{itemize}
-    \item Sa simplicité de mise en œuvre et son nombre de ports importants. Les ports sont variés (E/S, UART…) et spécifiques à chaque capteur et actionneurs, nous permettant de remplir facilement certaines conditions essentielles imposées par Dassault (bouton shutdown, port GPS...).
-    \item La redondance de ses capteurs internes (accéléromètre, gyroscope, magnétomètre).
+    \item Le nombre de sorties, assez pour avoir 2 servomoteurs et 2 moteurs.
+    \item La possibilité de greffer des capteurs externes comme le GPS, la boussole et la télémétrie. Ces ports, appelés UART, permettent à la fois de recevoir et d'envoyer des données à ces capteurs.
+    \item Les fonctions intégrées telles que les capteurs intégrés de surveillance de la batterie.
+    \item Le nombre d'entrées/sorties (E/S) analogiques, nécessaires pour recueillir les informations du récepteur ou de l'état de la batterie.\newline
+\end{itemize}
+
+Le Pixhawk s’est donc imposé à nous pour les raisons suivantes :\newline
+\begin{itemize}
+    \item Sa simplicité de mise en œuvre et son nombre de ports importants. Les ports sont variés (E/S, UART…) et spécifiques à chaque capteur et actionneur, nous permettant de remplir facilement certaines conditions essentielles imposées par Dassault (bouton shutdown, port GPS...).
+    \item La présence et redondance de ses capteurs internes (accéléromètre, gyroscope, magnétomètre).
     \item Le prix contenu (trouvé à 112 euros).
     \item Son poids très contenu.
     \item Ses petites dimensions (8.2x4.3x1.7cm), le rendant facilement logeable dans le fuselage.
 \end{itemize}
-Au vu de ces éléments, nous avons fait notre choix sur le Pixhawk 2.4.8 car il satisfait nos critères sur le nombre et la diversité de ces ports, ainsi que son prix. Afin d’améliorer sa stabilité on pourra lui ajouter des patins en caoutchouc pour limiter la vibration et donc le bruit sur ses capteurs.
+Au vu de ces éléments, nous avons fait notre choix sur le Pixhawk 2.4.8. Il satisfait en effet nos critères sur le nombre et la diversité de ces ports, ainsi que sur le critère du prix. Pour améliorer sa fiabilité, nous pourrons lui ajouter des patins en caoutchouc afin de limiter la vibration et donc le bruit sur ses capteurs.
 
 \subsection{Fonctionnement global du système utilisant Ardupilot}
 
@@ -614,7 +616,7 @@ Le Ground Station software (GCS),  ou le logiciel de contrôle au sol, va être 
 
 Nous nous sommes tournés vers un GCS accessible et fonctionnant bien sur toutes nos plateformes. Nous avons choisi QGroundControl qui est une interface utilisateur facile d’accès. Caractéristique supplémentaire, et preuve de sa fiabilité, il est le GCS le plus courant sur les systèmes reposant sur Android et permet une bonne mise en page sur les petits appareils tels que les téléphones ou tablettes.
 
-\subsection{Avancée actuelle}
+\subsection{Avancement de notre drone}
 
 \subsubsection{Build Arduipilot pour un pixhawk4 réussi}
 
@@ -631,9 +633,13 @@ Cette réussite représente donc un progrès significatif vers la réalisation d
 
 \section{Système de détection}
 
-Notre mission consiste à envoyer le drone de manière autonome pour déposer une bouée à une personne en mer. Nous devons avoir un moyen de détecter les humains dans un périmètre donné. Nous avons donc opté pour une détection par caméra de la personne. Le choix le plus simple et le mieux adapté serait d'utiliser une caméra thermique pour détecter les zones chaudes. Il suffit donc de repérer ces zones et d'envoyer une image de confirmation à la station de contrôle pour s'assurer qu'il s'agit bien de la personne à secourir. Cela présente l'avantage d'être très simple à mettre en place et fonctionne de jour comme de nuit. Cependant, le coût de ces caméras est exorbitant, donc il nous est impossible d'en acquérir une d'une résolution suffisante cette année.\newline
+Notre mission consiste à envoyer le drone de manière autonome pour déposer une bouée à proximité d'une personne en mer. \newline
 
-Nous avons donc opté pour une approche avec une caméra classique couplée à un algorithme d'apprentissage supervisé de détection d'objet. Afin de déterminer si la technique pouvait fonctionner, nous avons pris nos nageurs les moins frileux et les avons photographiés dans la mer sous différents angles. Au total, nous avons recueilli plus de 1000 images que nous avons annotées avec une seule classe (noyé), soit un total de 2000 instances de nageurs que nous avons fournies à notre intelligence artificielle. Nous avons utilisé YOLOv8, car c'est la version la plus récente de la série YOLO et qu'elle est plus simple à entraîner que ses prédécesseurs tels que Darknet YOLO.
+Nous devons donc avoir un moyen de détecter des individus dans un périmètre donné. Nous avons donc opté pour une détection par caméra de la personne.\newline
+
+Le choix le plus simple et le mieux adapté serait d'utiliser une caméra thermique pour détecter les zones chaudes. Il suffit donc de repérer ces zones et d'envoyer une image de confirmation à la station de contrôle pour s'assurer qu'il s'agit bien de la personne à secourir. Cela présente l'avantage d'être très simple à mettre en place et fonctionne de jour comme de nuit. Cependant, le coût de ces caméras est trop élevé dans le cadre de notre projet, il nous est alors impossible d'en acquérir une d'une résolution suffisante cette année.\newline
+
+Nous avons donc opté pour une approche avec une caméra classique couplée à un algorithme d'apprentissage supervisé de détection d'objet. Afin de déterminer si la technique pouvait fonctionner, nous avons pris nos nageurs les moins frileux et les avons photographiés dans la mer sous différents angles. Au total, nous avons recueilli plus de 1000 images que nous avons annotées avec une seule classe (noyé), soit un total de 2000 instances de nageurs que nous avons fournies à notre intelligence artificielle. Nous avons utilisé YOLOv8, version la plus récente de YOLO, qui présente l'avantage d'être plus simple à entraîner que Darknet YOLO.
 \bigskip
 \begin{figure}[h]
     \begin{minipage}{0.5\textwidth}
@@ -650,12 +656,10 @@ Nous avons donc opté pour une approche avec une caméra classique couplée à u
     \end{minipage}
 \end{figure}
 
-Nous avons choisi la version "medium" de YOLOv8, car elle offre un bon compromis entre le nombre de paramètres et la performance de détection. Ensuite, nous avons fait tourner l'algorithme sur quelques vidéos inconnues du modèle sur une GTX 1070 et ainsi pu détecter les zones où se trouvaient des personnes dans l'eau, ainsi qu'un pourcentage de confiance.\newline
+Nous avons choisi la version "medium" de YOLOv8, car elle offre un bon compromis entre le nombre de paramètres et la performance de détection. \newline
+L'algorithme a ensuite été utilisé sur quelques vidéos inconnues du modèle, le tout tournant sur une GTX 1070.Il a ainsi pu détecter avec succès les zones où se trouvaient des personnes dans l'eau, ainsi qu'un pourcentage de confiance.\newline
 
 Les résultats étaient excellents grâce aux conditions de visibilité quasi identiques à l'apprentissage, mais nous pouvons sans problème étendre la base de données en changeant d'endroit, d'heure et de météo afin de garantir une détection optimale pour toutes les conditions. Nous sommes conscients que nous n'aurons pas une puissance de calcul aussi importante qu'une GTX 1070 sur notre drone en raison des coûts et du poids. Cependant, il reste des étapes importantes d'optimisation telles que la quantification et l'élagage, le passage de python à OpenCV en C++. De plus, nous ne sommes pas contraints de faire tourner le modèle à 60 fps, car les images seront sensiblement les mêmes. En cas de temps de traitement trop long, nous pouvons toujours passer à un modèle plus léger, mais dans notre cas, il est préférable de prendre plus de temps pour faire une inférence plutôt que mettre peu de temps, et avoir des détections manquées.\newline
-
-Une vidéo présente les résultats obtenus sur le lien suivant :
-\textcolor{red}{mettre lien yt}
 
 \section{Système de largage}
 \label{larg}
@@ -751,9 +755,9 @@ Nous avons déjà les éléments suivants :
     \item Moteurs pour les tests fonctionnels, cependant ils ne seront pas assez puissants pour soulever le drone avec sa charge utile.\newline
 \end{itemize}
 
-\underline{Prix total :} 632,52 € (Il est à noter que notre association part avec très peu de matériel initial).
+\underline{Prix total :} 632,52 € (Il est à noter que notre association part avec très peu de matériel initial).\newline
 
-\underline{Poids :} 892 grammes pour la motorisation et l’électronique, auquel il faudra ajouter les 500 grammes de la bouée, et la masse fixe du drone (polystyrène, fuselage en PLA et tubes) qui fera moins de 300 grammes. On arrive à une masse totale inférieure à 1700 grammes.
+\underline{Poids :} 892 grammes pour la motorisation et l’électronique, auquel il faudra ajouter les 500 grammes de la bouée, et la masse fixe du drone (polystyrène, fuselage en PLA et tubes) qui fera moins de 300 grammes. On arrive à une masse totale de 1692 grammes, inférieure à 1700 grammes.
 
 \chapter{État d'avancement du prototype}
 
@@ -776,5 +780,14 @@ Dès que nous serons en possession d'un pixhawk, nous pourrons réaliser les tes
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{\protect\numberline{}Conclusion}
 
+En conclusion, notre projet de drone VTOL dédié au sauvetage en mer incarne notre souhait d'unir innovation technologique et mission humanitaire. Notre drone offre une réponse rapide et efficace aux situations d'urgence en mer, où chaque instant compte.
+
+Les choix que nous avons fait pour la conception de notre drone nous permettent de répondre au mieux à notre mission. L'efficacité de la transition du vol vertical au vol horizontal justifie notre choix du système VTOL. La sélection des matériaux pour la structure nous permet d'optimiser le poids final de notre drone.
+
+Dans l'objectif d'améliorer les chances de succès de notre mission, nous nous attachons à améliorer notre reconnaissance par IA et à optimiser le système de largage suite à nos futurs tests.
+
+Nous avons pour objectif de faire notre premier essai en vol avant les vacances de Noël, ce qui implique d'effectuer un premier montage électronique fonctionnel dès que nous aurons toutes les pièces. Notre équipe est motivée et impatiente de débuter cette nouvelle étape du projet.
+
+Nous remercions Dassault pour cette opportunité de présenter notre drone et sa mission.
 
 \end{document}
